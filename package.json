@@ -6,15 +6,14 @@
   "main": "server.js",
   "scripts": {
     "test": "npm run lint && cd client && npm test",
-    "server": "nodemon server.js",
     "lint": "eslint . --ext .js",
     "build": "cd client && npm run build && npm run build-storybook",
-    "start": "node server.js",
     "prettify": "prettier --write .",
     "postinstall": "cd client && npm install",
-    "client": "npm run storybook && npm run cra",
+    "server": "nodemon server.js",
+    "client": "cd client && npm run start",
     "storybook": "cd client && npm run storybook",
-    "cra": " cd client && npm run start"
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\" \"npm run storybook\""
   },
   "repository": {
     "type": "git",
@@ -35,6 +34,7 @@
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.34.0",
     "babel-eslint": "^10.1.0",
+    "concurrently": "^5.3.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-react-app": "^5.2.1",
