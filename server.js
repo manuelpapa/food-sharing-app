@@ -12,8 +12,15 @@ app.use(
   "/storybook",
   express.static(path.join(__dirname, "client/storybook-static"))
 );
-app.use(middlewares);
+
+app.use(
+  jsonServer.rewriter({
+    "/api/*": "/$1",
+  })
+);
 app.use(router);
+app.use(middlewares);
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
