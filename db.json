@@ -1,3 +1,16 @@
 {
-  "test": [{ "test": "test" }]
+  "list": [
+    {
+      "id": 1,
+      "title": "Ananas"
+    },
+    {
+      "id": 2,
+      "title": "Banane"
+    },
+    {
+      "title": "Milch",
+      "id": 3
+    }
+  ]
 }
