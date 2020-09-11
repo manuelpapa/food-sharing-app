@@ -55,7 +55,7 @@ function App() {
           <h2>Second Bite</h2>
           <p>Saviors of food and waste.</p>
 
-          <img src={LogoSrc} alt="SecondBite Logo" />
+          <img src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
         </Header>
         <Main>
           <h4>Im Namen der Mundgerechtigkeit.</h4>
