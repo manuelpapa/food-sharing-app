@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "14.7.0"
+  },
   "scripts": {
     "test": "npm run lint && cd client && npm test",
     "lint": "eslint . --ext .js",

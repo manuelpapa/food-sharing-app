@@ -12,9 +12,11 @@ const GlobalStyles = () => {
         *:before,
         *:after {
           box-sizing: border-box;
+          margin: 0;
         }
 
         #root {
+          display: grid;
           height: 100vh;
           width: 100vw;
           --bg-main-gradient: linear-gradient(
@@ -38,6 +40,11 @@ const GlobalStyles = () => {
           font-family: "SFUIreg";
           src: url(${SFUIreg}) format("woff");
         }
+        h1 {
+          font-family: "SFUIbold";
+          font-size: 2.2em;
+          color: #000000;
+        }
         h2 {
           font-family: "SFUIbold";
           font-size: 2em;
@@ -45,15 +52,24 @@ const GlobalStyles = () => {
         }
         h3 {
           font-family: "SFUIheavy";
+          font-size: 1em;
+          color: #000000;
+        }
+        h4 {
+          font-family: "SFUIbold";
+          font-size: 1em;
           color: #000000;
         }
         body {
           font-family: "SFUIreg";
-          font-size: 17px;
+          font-size: 1em;
+          margin: 0;
+          padding: 0;
+          overflow: none;
         }
         small {
           font-family: "SFUIreg";
-          font-size: 13px;
+          font-size: 0.8em;
           color: var(--font-semi-dark);
         }
 
