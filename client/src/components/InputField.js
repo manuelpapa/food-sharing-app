@@ -3,10 +3,12 @@ import styled from "@emotion/styled";
 
 const Input = styled("input")`
   font-size: 0.9em;
-  padding: 10px 15px;
-  margin-bottom: 10px;
+  padding-bottom: 0.3em;
+  padding-top: 2em;
+  background: none;
   border: none;
   border-bottom: 1px solid var(--font-semi-dark);
+  text-align: center;
   ::placeholder {
     color: var(--font-semi-dark);
     font-size: 13px;
@@ -14,14 +16,6 @@ const Input = styled("input")`
   }
 `;
 
-// export default function SearchInput({ value, onChange }) {
 export default function SearchInput() {
-  return (
-    <Input
-      placeholder="Eingabe"
-      // value={value}
-      // onChange={(event) => onChange(event.target.value.trim())}
-      autoFocus
-    />
-  );
+  return <Input placeholder="Eingabe" autoFocus />;
 }
