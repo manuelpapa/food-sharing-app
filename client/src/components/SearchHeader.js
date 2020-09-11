@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 import AddIcon from "../assets/images/secondBite_Icon_Menu.svg";
 import UserIcon from "../assets/images/secondBite_Icon_Sort.svg";
-import InputField from "./InputField";
+import SearchInput from "./SearchInput";
 import { Link } from "react-router-dom";
 
 const SearchHeaderContainer = styled.header`
@@ -22,7 +22,6 @@ const SearchHeaderIcons = styled.nav`
   justify-content: space-between;
   & > a {
     display: flex;
-    align-items: center;
     padding: 0.7em;
   }
   & > a > img {
@@ -37,7 +36,7 @@ function SearchHeader() {
         <Link to="/AddIcon">
           <img src={AddIcon} alt="Essen teilen" />
         </Link>
-        <InputField />
+        <SearchInput />
         <Link to="/UserIcon">
           <img src={UserIcon} alt="Mein Bereich" />
         </Link>
