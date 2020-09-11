@@ -1,5 +1,8 @@
 import React from "react";
 import GlobalStyles from "./GlobalStyles";
+import SubmitButton from "./components/SubmitButton";
+import InputField from "./components/InputField";
+
 // import {
 //   BrowserRouter as Router,
 //   Switch,
@@ -11,7 +14,12 @@ function App() {
   return (
     <>
       <GlobalStyles />
-      <p>Hola Papa!</p>
+      <h2>Headline</h2>
+      <h3>Title tile</h3>
+      <p>Text Text</p>
+      <InputField>E-Mail</InputField>
+      <SubmitButton>Login</SubmitButton>
+      <small>Register</small>
     </>
   );
 }
