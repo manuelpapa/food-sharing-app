@@ -61,7 +61,7 @@ function App() {
           <h4>Im Namen der Mundgerechtigkeit.</h4>
           <p>
             Mehr als 10 Millionen Tonnen Lebensmittel landen alleine in
-            Deutschland jedes Jahr im Müll.
+            Deutschland jedes Jahr im Müll!
           </p>
           <p>
             Hilf mit Müll zu vermeiden und teile, was noch köstlich und gut ist.
