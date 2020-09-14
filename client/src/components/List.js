@@ -1,27 +1,55 @@
 import React from "react";
+import GlobalStyles from "../GlobalStyles";
+import SearchHeader from "./SearchHeader";
+import Footer from "./Footer";
 import styled from "@emotion/styled";
-import PropTypes from "prop-types";
-const MainContainer = styled.main`
-  margin: 0;
-  grid-area: 2 / 1 / 3 / 4;
-  display: grid;
-  grid-template-rows: 8.45% auto;
-  grid-template-columns: 5vw 90vw 5vw;
-  & > :first-child {
-    grid-area: 1 / 1 / 2 / 4;
-  }
-  & > :last-child {
-    grid-area: 2 / 2 / 3 / 3;
-    overflow: auto;
+import { BrowserRouter } from "react-router-dom";
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  h4,
+  p {
+    text-align: center;
+    padding-bottom: 1em;
   }
 `;
 
-function Main({ children }) {
-  return <MainContainer>{children}</MainContainer>;
+const Main = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em 3.2em;
+`;
+
+export function List() {
+  return (
+    <>
+      <Container>
+        <GlobalStyles />
+        <BrowserRouter>
+          <SearchHeader />
+          <Main>
+            <ul>
+              <li>ListItem</li>
+              <li>ListItem</li>
+              <li>ListItem</li>
+              <li>ListItem</li>
+              <li>ListItem</li>
+              <li>ListItem</li>
+              <li>ListItem</li>
+              <li>ListItem</li>
+              <li>ListItem</li>
+              <li>ListItem</li>
+              <li>ListItem</li>
+              <li>ListItem</li>
+              <li>ListItem</li>
+            </ul>
+          </Main>
+          <Footer />
+        </BrowserRouter>
+      </Container>
+    </>
+  );
 }
-
-export default Main;
-
-Main.propTypes = {
-  children: PropTypes.element.isRequired,
-};
