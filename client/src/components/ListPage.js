@@ -23,7 +23,7 @@ const Main = styled.div`
   padding: 1em 3.2em;
 `;
 
-export function List() {
+export function ListPage() {
   return (
     <>
       <Container>
