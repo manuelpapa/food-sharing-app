@@ -12,6 +12,7 @@ const FooterContainer = styled.footer`
   left: 0;
   bottom: 0;
   width: 100vw;
+  background: #fff;
 `;
 
 const FooterGradient = styled.div`
