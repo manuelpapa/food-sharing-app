@@ -1,7 +1,7 @@
 import React from "react";
 import GlobalStyles from "../GlobalStyles";
-import SearchHeader from "./SearchHeader";
-import Footer from "./Footer";
+import SearchHeader from "../components/SearchHeader";
+import Footer from "../components/Footer";
 import styled from "@emotion/styled";
 import { BrowserRouter } from "react-router-dom";
 
