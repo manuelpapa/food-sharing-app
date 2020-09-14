@@ -34,7 +34,7 @@ const FooterIcons = styled.nav`
   }
 `;
 
-function Footer() {
+export default function Footer() {
   return (
     <FooterContainer>
       <FooterGradient />
@@ -52,5 +52,3 @@ function Footer() {
     </FooterContainer>
   );
 }
-
-export default Footer;
