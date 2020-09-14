@@ -39,7 +39,7 @@ const Footer = styled.div`
   bottom: 1em;
 `;
 
-export function Page() {
+export function Login() {
   return (
     <>
       <Container>
