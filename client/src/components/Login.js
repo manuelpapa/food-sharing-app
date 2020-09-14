@@ -1,16 +1,9 @@
 import React from "react";
-import GlobalStyles from "./GlobalStyles";
-import Button from "./components/Button";
-import InputField from "./components/InputField";
-import LogoSrc from "../src/assets/images/secondBite_Logo.svg";
+import GlobalStyles from "../GlobalStyles";
+import Button from "./Button";
+import InputField from "./InputField";
+import LogoSrc from "../assets/images/secondBite_Logo.svg";
 import styled from "@emotion/styled";
-
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link
-// } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -46,7 +39,7 @@ const Footer = styled.div`
   bottom: 1em;
 `;
 
-function App() {
+export function Login() {
   return (
     <>
       <Container>
@@ -78,5 +71,3 @@ function App() {
     </>
   );
 }
-
-export default App;
