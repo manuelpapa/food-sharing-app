@@ -7,33 +7,53 @@ import Footer from "../components/Footer";
 import List from "../components/List";
 import { fetchResults } from "../api/results";
 import LogoSrc from "../assets/images/secondBite_Logo.svg";
+import LocationSrc from "../assets/images/secondBite_Icon_Location.svg";
+import DateSrc from "../assets/images/secondBite_Icon_Date.svg";
+import TimeSrc from "../assets/images/secondBite_Icon_Time.svg";
+import ArrowSrc from "../assets/images/secondBite_Icon_ArrowRight.svg";
 //import SearchInput from "../components/SearchInput";
 
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  h4,
-  p {
-    text-align: center;
-    padding-bottom: 1em;
-  }
-`;
-
 const Main = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 1em 3.2em;
+  margin: 4em 0;
+  display: grid;
 `;
 
 const ListItem = styled.a`
-  display: flex;
-  padding: 1em;
+  display: grid;
+  grid-template: 4em 1fr 1em / 3em 1fr 1em;
+  align-items: center;
+  margin: 1em;
   border-bottom: 1px solid #eeeeee;
   text-decoration: none;
   color: var(--font-semi-dark);
-  align-items: left;
+`;
+
+const CategoryImage = styled.img`
+  grid-column: 1 / 2;
+  max-height: 2em;
+`;
+
+const Description = styled.div`
+  grid-column: 2 / 3;
+  padding-left: 1em;
+
+  img {
+    height: 1.2em;
+    padding-right: 0.3em;
+    margin-bottom: -0.2em;
+  }
+  h3,
+  p {
+    padding-bottom: 0.5em;
+  }
+  p {
+    font-size: 0.9em;
+  }
+`;
+
+const ArrowIcon = styled.img`
+  grid-column: 3 / 4;
+  max-height: 1em;
 `;
 
 export function Results() {
@@ -63,32 +83,34 @@ export function Results() {
 
   return (
     <>
-      <Container>
-        <GlobalStyles />
-        <BrowserRouter>
-          <SearchHeader />
-          <Main>
-            <List>
-              {results.map((result) => (
-                <ListItem key={result.id} href={`/offers/${result.id}`}>
-                  <p>{result.id}</p>
-                  <img
-                    src={LogoSrc}
-                    alt="A logo of a lifebuoy inside of a cloche"
-                  />
-                  <p>{result.title}</p>
-                  <p>{result.location}</p>
-                  <p>{result.category}</p>
-
-                  <p>{result.pickup_date}</p>
-                  <p>{result.pickup_time}</p>
-                </ListItem>
-              ))}
-            </List>
-          </Main>
-          <Footer />
-        </BrowserRouter>
-      </Container>
+      <GlobalStyles />
+      <BrowserRouter>
+        <SearchHeader />
+        <Main>
+          <List>
+            {results.map((result) => (
+              <ListItem key={result.id} href={`/offers/${result.id}`}>
+                <CategoryImage src={LogoSrc} alt="offer title" />
+                <Description>
+                  <h3>{result.title}</h3>
+                  <p>
+                    <img src={LocationSrc} alt="locationpicker icon" />
+                    {result.location}
+                  </p>
+                  <p>
+                    <img src={DateSrc} alt="calendar icon" />
+                    {result.pickup_date}&nbsp;
+                    <img src={TimeSrc} alt="clock icon" />
+                    {result.pickup_time}&nbsp;Uhr
+                  </p>
+                </Description>
+                <ArrowIcon src={ArrowSrc} alt="offer title" />
+              </ListItem>
+            ))}
+          </List>
+        </Main>
+        <Footer />
+      </BrowserRouter>
     </>
   );
 }
