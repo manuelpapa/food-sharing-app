@@ -6,11 +6,12 @@ import SearchHeader from "../components/SearchHeader";
 import Footer from "../components/Footer";
 import List from "../components/List";
 import { fetchResults } from "../api/results";
-import LogoSrc from "../assets/images/secondBite_Logo.svg";
 import LocationSrc from "../assets/images/secondBite_Icon_Location.svg";
 import DateSrc from "../assets/images/secondBite_Icon_Date.svg";
 import TimeSrc from "../assets/images/secondBite_Icon_Time.svg";
 import ArrowSrc from "../assets/images/secondBite_Icon_ArrowRight.svg";
+import fruitsSrc from "../assets/images/sb_icon_fruits.svg";
+
 //import SearchInput from "../components/SearchInput";
 
 const Main = styled.div`
@@ -90,7 +91,7 @@ export function Results() {
           <List>
             {results.map((result) => (
               <ListItem key={result.id} href={`/offers/${result.id}`}>
-                <CategoryImage src={LogoSrc} alt="offer title" />
+                <CategoryImage src={fruitsSrc} alt="offer title" />
                 <Description>
                   <h3>{result.title}</h3>
                   <p>
