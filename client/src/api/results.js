@@ -12,7 +12,7 @@ export async function fetchResults() {
   const mockedResults = [
     {
       id: 1,
-      title: "5 Bananen",
+      title: "Bananen",
       category: "fruits",
       location: "50968 Köln",
       pickup_date: "15.08.2020",
@@ -76,4 +76,18 @@ export async function fetchResults() {
     },
   ];
   return mockedResults;
+}
+
+export async function fetchResult() {
+  const mockedResult = [
+    {
+      id: 1,
+      title: "12 frische Bananen",
+      category: "fruits",
+      location: "50968 Köln",
+      pickup_date: "15.08.2020",
+      pickup_time: "15:00 - 16:00",
+    },
+  ];
+  return mockedResult;
 }
