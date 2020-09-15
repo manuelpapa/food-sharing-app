@@ -5,7 +5,7 @@ import ArrowLeft from "../assets/images/secondBite_Icon_ArrowLeft.svg";
 
 const BreadcrumbHeaderContainer = styled.header`
   display: grid;
-  grid-template: 4em 1fr / 4em 1fr;
+  grid-template: 4em 1fr / 4em 1fr 4em;
   position: fixed;
   left: 0;
   top: 0;
