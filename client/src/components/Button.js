@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 const Button = styled.button`
   font-family: "SFUIbold";
-  display: flex;
   font-size: 1em;
   color: #000000;
   border: 0;
