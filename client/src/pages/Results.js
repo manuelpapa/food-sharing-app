@@ -96,9 +96,9 @@ export function Results() {
                   </p>
                   <p>
                     <img src={DateSrc} alt="calendar icon" />
-                    {result.pickup_date}&nbsp;
+                    {result.date}&nbsp;
                     <img src={TimeSrc} alt="clock icon" />
-                    {result.pickup_time}&nbsp;Uhr
+                    {result.time}&nbsp;Uhr
                   </p>
                 </Description>
                 <ArrowIcon src={ArrowSrc} alt="offer title" />
