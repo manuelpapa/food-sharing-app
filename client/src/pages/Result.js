@@ -9,10 +9,7 @@ import { fetchResults } from "../api/results";
 import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
 import TimeSrc from "../assets/icons/time.svg";
-
 import fruitsSrc from "../assets/icons/fruits.svg";
-
-//import SearchInput from "../components/SearchInput";
 
 const Main = styled.div`
   margin: 6em 0;
