@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "@emotion/styled";
-import AddIcon from "../assets/images/secondBite_Icon_Menu.svg";
-import UserIcon from "../assets/images/secondBite_Icon_Sort.svg";
+import AddIcon from "../assets/icons/menu.svg";
+import UserIcon from "../assets/icons/sort.svg";
 import SearchInput from "./SearchInput";
 import { Link } from "react-router-dom";
 

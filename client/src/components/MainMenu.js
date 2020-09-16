@@ -1,7 +1,7 @@
 import React from "react";
 import GlobalStyles from "../GlobalStyles";
 import BreadcrumbHeader from "../components/BreadcrumbHeader";
-import LogoSrc from "../assets/images/secondBite_Logo.svg";
+import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
 import { BrowserRouter } from "react-router-dom";
 

@@ -2,7 +2,7 @@ import React from "react";
 import GlobalStyles from "../GlobalStyles";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
-import LogoSrc from "../assets/images/secondBite_Logo.svg";
+import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
 
 const Container = styled.div`

@@ -6,11 +6,12 @@ import SearchHeader from "../components/SearchHeader";
 import Footer from "../components/Footer";
 import List from "../components/List";
 import { fetchResults } from "../api/results";
-import LocationSrc from "../assets/images/secondBite_Icon_Location.svg";
-import DateSrc from "../assets/images/secondBite_Icon_Date.svg";
-import TimeSrc from "../assets/images/secondBite_Icon_Time.svg";
-import ArrowSrc from "../assets/images/secondBite_Icon_ArrowRight.svg";
-import fruitsSrc from "../assets/images/sb_icon_fruits.svg";
+import ArrowSrc from "../assets/icons/arrowRight.svg";
+import LocationSrc from "../assets/icons/location.svg";
+import DateSrc from "../assets/icons/date.svg";
+import TimeSrc from "../assets/icons/time.svg";
+
+import fruitsSrc from "../assets/icons/fruits.svg";
 
 //import SearchInput from "../components/SearchInput";
 

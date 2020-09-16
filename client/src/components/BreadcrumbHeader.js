@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import styled from "@emotion/styled";
-import ArrowLeft from "../assets/images/secondBite_Icon_ArrowLeft.svg";
+import ArrowLeft from "../assets/icons/arrowLeft.svg";
 
 const BreadcrumbHeaderContainer = styled.header`
   display: grid;
@@ -56,7 +56,7 @@ SET FETCHED TITLE AS TITLE
 import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import styled from "@emotion/styled";
-import ArrowLeft from "../assets/images/secondBite_Icon_ArrowLeft.svg";
+import ArrowLeft from "../assets/icons/ArrowLeft.svg";
 import { fetchResult } from "../api/results";
 
 const BreadcrumbHeaderContainer = styled.header`
