@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "@emotion/styled";
-import AddIcon from "../assets/images/secondBite_Icon_Add.svg";
-import ListIcon from "../assets/images/secondBite_Icon_List.svg";
-import UserIcon from "../assets/images/secondBite_Icon_User.svg";
+import AddIcon from "../assets/icons/add.svg";
+import ListIcon from "../assets/icons/list.svg";
+import UserIcon from "../assets/icons/user.svg";
 import { Link } from "react-router-dom";
 
 const FooterContainer = styled.footer`
