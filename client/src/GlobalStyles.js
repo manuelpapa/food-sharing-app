@@ -42,11 +42,13 @@ const GlobalStyles = () => {
         }
         h1 {
           font-family: "SFUIbold";
+          letter-spacing: -0.05em;
           font-size: 2.2em;
           color: #000000;
         }
         h2 {
           font-family: "SFUIbold";
+          letter-spacing: -0.05em;
           font-size: 2em;
           color: #000000;
         }
@@ -57,8 +59,16 @@ const GlobalStyles = () => {
         }
         h4 {
           font-family: "SFUIbold";
+          letter-spacing: -0.05em;
           font-size: 1em;
           color: #000000;
+        }
+        menuLinks {
+          font-family: "SFUIbold";
+          letter-spacing: -0.05em;
+          font-size: 2em;
+          color: #000000;
+          padding-bottom: 1em;
         }
         body {
           font-family: "SFUIreg";
