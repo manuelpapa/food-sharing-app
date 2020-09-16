@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
-import GlobalStyles from "../GlobalStyles";
 import styled from "@emotion/styled";
 import SearchHeader from "../components/SearchHeader";
 import Footer from "../components/Footer";
@@ -10,10 +9,7 @@ import ArrowSrc from "../assets/icons/arrowRight.svg";
 import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
 import TimeSrc from "../assets/icons/time.svg";
-
 import fruitsSrc from "../assets/icons/fruits.svg";
-
-//import SearchInput from "../components/SearchInput";
 
 const Main = styled.div`
   margin: 4em 0;
@@ -85,7 +81,6 @@ export function Results() {
 
   return (
     <>
-      <GlobalStyles />
       <BrowserRouter>
         <SearchHeader />
         <Main>

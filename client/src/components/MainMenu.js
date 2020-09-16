@@ -1,5 +1,4 @@
 import React from "react";
-import GlobalStyles from "../GlobalStyles";
 import BreadcrumbHeader from "../components/BreadcrumbHeader";
 import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
@@ -30,18 +29,25 @@ const Footer = styled.div`
   bottom: 1em;
 `;
 
+const MenuLink = styled.a`
+  font-family: "SFUIbold";
+  letter-spacing: -0.05em;
+  font-size: 2em;
+  color: #000000;
+  padding-bottom: 1em;
+`;
+
 export function MainMenu() {
   return (
     <>
-      <GlobalStyles />
       <BrowserRouter>
         <Container>
           <BreadcrumbHeader />
           <Logo src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
           <Main>
-            <menuLinks>Angebote</menuLinks>
-            <menuLinks>Essen anbieten</menuLinks>
-            <menuLinks>Mein Bereich</menuLinks>
+            <MenuLink>Angebote</MenuLink>
+            <MenuLink>Essen anbieten</MenuLink>
+            <MenuLink>Mein Bereich</MenuLink>
           </Main>
           <Footer>
             <small>© Manuel Papa 2020</small>

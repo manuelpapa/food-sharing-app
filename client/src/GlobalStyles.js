@@ -40,22 +40,21 @@ const GlobalStyles = () => {
           font-family: "SFUIreg";
           src: url(${SFUIreg}) format("woff");
         }
-        h1 {
+        h1,
+        h2,
+        h3 {
           font-family: "SFUIbold";
           letter-spacing: -0.05em;
-          font-size: 2.2em;
           color: #000000;
+        }
+        h1 {
+          font-size: 2.2em;
         }
         h2 {
-          font-family: "SFUIbold";
-          letter-spacing: -0.05em;
           font-size: 2em;
-          color: #000000;
         }
         h3 {
-          font-family: "SFUIheavy";
           font-size: 1em;
-          color: #000000;
         }
         h4 {
           font-family: "SFUIbold";
@@ -63,13 +62,7 @@ const GlobalStyles = () => {
           font-size: 1em;
           color: #000000;
         }
-        menuLinks {
-          font-family: "SFUIbold";
-          letter-spacing: -0.05em;
-          font-size: 2em;
-          color: #000000;
-          padding-bottom: 1em;
-        }
+
         body {
           font-family: "SFUIreg";
           font-size: 1em;

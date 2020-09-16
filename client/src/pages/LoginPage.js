@@ -1,5 +1,4 @@
 import React from "react";
-import GlobalStyles from "../GlobalStyles";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import LogoSrc from "../assets/icons/logo.svg";
@@ -43,7 +42,6 @@ export function LoginPage() {
   return (
     <>
       <Container>
-        <GlobalStyles />
         <Header>
           <h2>Second Bite</h2>
           <p>Saviors of food and waste.</p>
