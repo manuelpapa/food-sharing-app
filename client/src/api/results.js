@@ -78,7 +78,7 @@ export async function fetchResults() {
   return mockedResults;
 }
 
-export async function fetchResultObject() {
+export async function fetchOffer() {
   const mockedResult = {
     id: 1,
     title: "12 frische Bananen",

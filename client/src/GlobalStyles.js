@@ -26,6 +26,7 @@ const GlobalStyles = () => {
           );
           --bg-dark: #424953;
           --font-semi-dark: #818181;
+          --tag-yellow: #fefcc9;
         }
         /* FONTS */
         @font-face {
@@ -43,15 +44,16 @@ const GlobalStyles = () => {
         h1,
         h2,
         h3 {
-          font-family: "SFUIbold";
           letter-spacing: -0.05em;
           color: #000000;
         }
         h1 {
+          font-family: "SFUIheavy";
           font-size: 2.2em;
         }
         h2 {
-          font-size: 2em;
+          font-family: "SFUIbold";
+          font-size: 1.8em;
         }
         h3 {
           font-size: 1em;
