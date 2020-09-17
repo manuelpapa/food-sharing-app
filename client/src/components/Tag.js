@@ -10,7 +10,7 @@ const Tag = styled.button`
   margin: 2em 0em 0.5em;
   display: inline-block;
   line-height: 1;
-  background: var(--tag-yellow);
+  background: var(--tag-standard);
   cursor: pointer;
 `;
 
