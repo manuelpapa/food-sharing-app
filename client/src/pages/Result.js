@@ -13,8 +13,6 @@ import Tag from "../components/Tag";
 
 const Main = styled.div`
   margin: 6em 1em;
-  align-items: center;
-  justify-content: center;
 `;
 
 const ListItem = styled.a`
