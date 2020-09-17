@@ -2,8 +2,9 @@ import React from "react";
 import GlobalStyles from "./GlobalStyles";
 import Button from "./components/Button";
 import InputField from "./components/InputField";
-import LogoSrc from "../src/assets/images/secondBite_Logo.svg";
+import LogoSrc from "../src/assets/icons/logo.svg";
 import styled from "@emotion/styled";
+import { BrowserRouter } from "react-router-dom";
 
 // import {
 //   BrowserRouter as Router,
@@ -48,7 +49,7 @@ const Footer = styled.div`
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Container>
         <GlobalStyles />
         <Header>
@@ -75,7 +76,7 @@ function App() {
           <small>© Manuel Papa 2020</small>
         </Footer>
       </Container>
-    </>
+    </BrowserRouter>
   );
 }
 

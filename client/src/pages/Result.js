@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
-import GlobalStyles from "../GlobalStyles";
+
 import styled from "@emotion/styled";
 import BreadcrumbHeader from "../components/BreadcrumbHeader";
 import Footer from "../components/Footer";
-import List from "../components/List";
-import { fetchResult } from "../api/results";
+import { fetchResultObject } from "../api/results";
 import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
 import TimeSrc from "../assets/icons/time.svg";
@@ -55,14 +53,14 @@ const Location = styled.div`
 `;
 
 export function Result() {
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   //const [query, setQuery] = useState("");
 
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
-      const offers = await fetchResult();
+      const offers = await fetchResultObject();
       setResults(offers);
       setIsLoading(false);
     }
@@ -70,44 +68,36 @@ export function Result() {
   }, []);
 
   if (isLoading || results === null) {
-    //return <LoadingScreen />;
-    console.log("loading screen");
+    return <div>loading...</div>;
   }
 
   return (
     <>
-      <GlobalStyles />
-      <BrowserRouter>
-        <BreadcrumbHeader />
-        <Main>
-          <List>
-            {results.map((result) => (
-              <ListItem key={result.id} href={`/offers/${result.id}`}>
-                <CategoryImage src={fruitsSrc} alt="offer title" />
-                <Description>
-                  <h1>{result.title}</h1>
-                  <Tags>{result.tags}</Tags>
-                  <Location>
-                    <img src={LocationSrc} alt="locationpicker icon" />
-                    {result.location.street}
-                    {result.location.zip}
-                    {result.location.city}
-                  </Location>
-                  <p>
-                    <img src={DateSrc} alt="calendar icon" />
-                    {result.date}
-                  </p>
-                  <p>
-                    <img src={TimeSrc} alt="clock icon" />
-                    {result.time}&nbsp;Uhr
-                  </p>
-                </Description>
-              </ListItem>
-            ))}
-          </List>
-        </Main>
-        <Footer />
-      </BrowserRouter>
+      <BreadcrumbHeader />
+      <Main>
+        <ListItem key={results.id} href={`/offers/${results.id}`}>
+          <CategoryImage src={fruitsSrc} alt="offer title" />
+          <Description>
+            <h1>{results.title}</h1>
+            <Tags>{results.tags}</Tags>
+            <Location>
+              <img src={LocationSrc} alt="locationpicker icon" />
+              <li>{results.location.street}</li>
+              <li>{results.location.zip}</li>
+              <li> {results.location.city}</li>
+            </Location>
+            <p>
+              <img src={DateSrc} alt="calendar icon" />
+              {results.date}
+            </p>
+            <p>
+              <img src={TimeSrc} alt="clock icon" />
+              {results.time}&nbsp;Uhr
+            </p>
+          </Description>
+        </ListItem>
+      </Main>
+      <Footer />
     </>
   );
 }

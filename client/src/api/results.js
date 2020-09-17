@@ -78,21 +78,19 @@ export async function fetchResults() {
   return mockedResults;
 }
 
-export async function fetchResult() {
-  const mockedResult = [
-    {
-      id: 1,
-      title: "12 frische Bananen",
-      category: "fruits",
-      tags: ["obst", "vegan", "vegetarisch", "laktosefrei", "glutenfrei"],
-      location: {
-        street: "Musterstraße 12",
-        zip: "50968",
-        city: "Köln",
-      },
-      date: "15.08.2020",
-      time: "15:00 - 16:00",
+export async function fetchResultObject() {
+  const mockedResult = {
+    id: 1,
+    title: "12 frische Bananen",
+    category: "fruits",
+    tags: ["obst", "vegan", "vegetarisch", "laktosefrei", "glutenfrei"],
+    location: {
+      street: "Musterstraße 12",
+      zip: "50968",
+      city: "Köln",
     },
-  ];
+    date: "15.08.2020",
+    time: "15:00 - 16:00",
+  };
   return mockedResult;
 }
