@@ -26,7 +26,7 @@ const GlobalStyles = () => {
           );
           --bg-dark: #424953;
           --font-semi-dark: #818181;
-          --tag-yellow: #fefcc9;
+          --tag-standard: #fefcc9;
         }
         /* FONTS */
         @font-face {
