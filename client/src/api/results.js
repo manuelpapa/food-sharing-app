@@ -85,6 +85,7 @@ export async function fetchOffer() {
     category: "fruits",
     tags: ["obst", "vegan", "vegetarisch", "laktosefrei", "glutenfrei"],
     location: {
+      name: "Papa",
       street: "Musterstraße 12",
       zip: "50968",
       city: "Köln",

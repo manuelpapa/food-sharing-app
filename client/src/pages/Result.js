@@ -55,6 +55,12 @@ const Description = styled.div`
 
 const Location = styled.div`
   margin-bottom: 2em;
+  p:nth-child(2) {
+    padding-left: 1.2em;
+  }
+  p:last-child {
+    padding-left: 1.2em;
+  }
 `;
 
 export function Result() {
@@ -95,10 +101,12 @@ export function Result() {
             <Location>
               <p>
                 <img src={LocationSrc} alt="locationpicker icon" />
-                {offers.location.street}
+                {offers.location.name}
               </p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;{offers.location.zip}</p>
-              <p>&nbsp;&nbsp;&nbsp;&nbsp;{offers.location.city}</p>
+              <p>{offers.location.street}</p>
+              <p>
+                {offers.location.zip}&nbsp;{offers.location.city}
+              </p>
             </Location>
             <p>
               <img src={DateSrc} alt="calendar icon" />
