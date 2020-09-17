@@ -47,6 +47,9 @@ const Description = styled.div`
   p {
     font-size: 0.9em;
   }
+  span {
+    padding-right: 1em;
+  }
 `;
 
 const ArrowIcon = styled.img`
@@ -92,13 +95,17 @@ export function Results() {
                   <h3>{result.title}</h3>
                   <p>
                     <img src={LocationSrc} alt="locationpicker icon" />
-                    {result.location}
+                    {result.city}
                   </p>
                   <p>
-                    <img src={DateSrc} alt="calendar icon" />
-                    {result.date}&nbsp;
-                    <img src={TimeSrc} alt="clock icon" />
-                    {result.time}&nbsp;Uhr
+                    <span>
+                      <img src={DateSrc} alt="calendar icon" />
+                      {result.date}
+                    </span>
+                    <span>
+                      <img src={TimeSrc} alt="clock icon" />
+                      {result.time}&nbsp;Uhr
+                    </span>
                   </p>
                 </Description>
                 <ArrowIcon src={ArrowSrc} alt="offer title" />
