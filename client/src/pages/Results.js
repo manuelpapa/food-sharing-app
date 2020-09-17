@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter } from "react-router-dom";
 import styled from "@emotion/styled";
 import SearchHeader from "../components/SearchHeader";
 import Footer from "../components/Footer";
@@ -84,37 +83,35 @@ export function Results() {
 
   return (
     <>
-      <BrowserRouter>
-        <SearchHeader />
-        <Main>
-          <List>
-            {results.map((result) => (
-              <ListItem key={result.id} href={`/offers/${result.id}`}>
-                <CategoryImage src={fruitsSrc} alt="offer title" />
-                <Description>
-                  <h3>{result.title}</h3>
-                  <p>
-                    <img src={LocationSrc} alt="locationpicker icon" />
-                    {result.city}
-                  </p>
-                  <p>
-                    <span>
-                      <img src={DateSrc} alt="calendar icon" />
-                      {result.date}
-                    </span>
-                    <span>
-                      <img src={TimeSrc} alt="clock icon" />
-                      {result.time}&nbsp;Uhr
-                    </span>
-                  </p>
-                </Description>
-                <ArrowIcon src={ArrowSrc} alt="offer title" />
-              </ListItem>
-            ))}
-          </List>
-        </Main>
-        <Footer />
-      </BrowserRouter>
+      <SearchHeader />
+      <Main>
+        <List>
+          {results.map((result) => (
+            <ListItem key={result.id} href={`/offers/${result.id}`}>
+              <CategoryImage src={fruitsSrc} alt="offer title" />
+              <Description>
+                <h3>{result.title}</h3>
+                <p>
+                  <img src={LocationSrc} alt="locationpicker icon" />
+                  {result.city}
+                </p>
+                <p>
+                  <span>
+                    <img src={DateSrc} alt="calendar icon" />
+                    {result.date}
+                  </span>
+                  <span>
+                    <img src={TimeSrc} alt="clock icon" />
+                    {result.time}&nbsp;Uhr
+                  </span>
+                </p>
+              </Description>
+              <ArrowIcon src={ArrowSrc} alt="offer title" />
+            </ListItem>
+          ))}
+        </List>
+      </Main>
+      <Footer />
     </>
   );
 }
