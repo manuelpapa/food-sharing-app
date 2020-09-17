@@ -43,7 +43,7 @@ export function LoginPage() {
     <>
       <Container>
         <Header>
-          <h2>Second Bite</h2>
+          <h1>Second Bite</h1>
           <p>Saviors of food and waste.</p>
 
           <img src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
