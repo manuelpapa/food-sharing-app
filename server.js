@@ -3,8 +3,6 @@ const express = require("express");
 const { MongoClient } = require("mongodb");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-
-//const createPasswordsRouter = require("./routes/passwords");
 const createUsersRouter = require("./routes/users");
 const createOffersRouter = require("./routes/offers");
 
