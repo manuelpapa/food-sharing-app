@@ -9,6 +9,7 @@ const Input = styled("input")`
   border-radius: 4em;
   background-color: #ffffff;
   color: var(--font-semi-dark);
+  outline: none;
 `;
 
 export default function SearchInput() {
