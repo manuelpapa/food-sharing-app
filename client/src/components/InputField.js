@@ -16,6 +16,18 @@ const Input = styled("input")`
   }
 `;
 
-export default function SearchInput() {
-  return <Input placeholder="Eingabe" autoFocus />;
+export function emailInput() {
+  return (
+    <Input
+      type="email"
+      id="email"
+      aria-describedby="emailHelp"
+      placeholder="E-Mail"
+      autoFocus
+    />
+  );
+}
+
+export function pwdInput() {
+  return <Input type="password" id="password" placeholder="Password" />;
 }
