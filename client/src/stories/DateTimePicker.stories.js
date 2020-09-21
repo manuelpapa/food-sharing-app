@@ -1,6 +1,6 @@
 import React from "react";
 
-import DateTimePicker from "../components/DateTimePicker";
+import { DateTimePicker } from "../components/DateTimePicker";
 
 export default {
   title: "DateTimePicker",
