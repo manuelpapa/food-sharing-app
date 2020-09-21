@@ -49,7 +49,38 @@ export default function Form() {
           name="Klingelname / Treffpunkt"
           ref={register({ required: true, min: 3, maxLength: 30 })}
         />
-
+        <input
+          type="checkbox"
+          placeholder="glutenfrei"
+          name="glutenfrei"
+          id="glutenfrei"
+          ref={register}
+        />
+        <label htmlFor="glutenfrei">glutenfrei</label>
+        <input
+          type="checkbox"
+          placeholder="laktosefrei"
+          name="laktosefrei"
+          id="laktosefrei"
+          ref={register}
+        />
+        <label htmlFor="laktosefrei">laktosefrei</label>
+        <input
+          type="checkbox"
+          placeholder="vegan"
+          name="vegan"
+          id="vegan"
+          ref={register}
+        />
+        <label htmlFor="vegan">vegan</label>
+        <input
+          type="checkbox"
+          placeholder="vegetarisch"
+          name="vegetarisch"
+          id="vegetarisch"
+          ref={register}
+        />
+        <label htmlFor="vegetarisch">vegetarisch</label>
         <input type="submit" />
       </form>
     </Form>

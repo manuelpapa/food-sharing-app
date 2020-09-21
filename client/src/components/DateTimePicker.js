@@ -4,23 +4,26 @@ import "react-datepicker/dist/react-datepicker.css";
 import { TimePicker } from "antd";
 import "antd/dist/antd.css";
 
-export function DateTimePicker() {
+export default function DateTimePicker() {
   const [selectedDate, setSelectedDate] = useState(null);
+  const [startDate, setStartDate] = useState(new Date());
   const { RangePicker } = TimePicker;
 
   return (
-    <>
-      <div>
-        <DatePicker
-          selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
-          dateFormat="dd.MM.yyyy"
-          isClearable="true"
-        />
-      </div>
-      <div>
-        <RangePicker format="HH:mm" minuteStep={15} />
-      </div>
-    </>
+    <div>
+      <DatePicker
+        selected={selectedDate}
+        onChange={(date) => setSelectedDate(date)}
+        dateFormat="dd.MM.yyyy"
+        isClearable="true"
+      />
+
+      <RangePicker
+        format="H:mm"
+        minuteStep={15}
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+      />
+    </div>
   );
 }

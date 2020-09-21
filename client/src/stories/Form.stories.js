@@ -9,4 +9,4 @@ export default {
 
 const Template = () => <Form />;
 
-export const AddressForm = Template.bind({});
+export const CreateForm = Template.bind({});
