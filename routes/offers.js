@@ -29,7 +29,7 @@ function createOffersRouter(database) {
       response.status(200).send(offers);
     } catch (error) {
       console.error(error);
-      console.error("Something went wrong 😑", error);
+      console.error("Something went wrong", error);
       response.status(500).send(error.message);
     }
   });
@@ -51,7 +51,7 @@ function createOffersRouter(database) {
       response.status(200).send(offer);
     } catch (error) {
       console.error(error);
-      console.error("Something went wrong 😑", error);
+      console.error("Something went wrong", error);
       response.status(500).send(error.message);
     }
   });
@@ -64,7 +64,7 @@ function createOffersRouter(database) {
       await createOffer(database, offer);
       response.status(201).send("Offer created.");
     } catch (error) {
-      console.error("Something went wrong 😑", error);
+      console.error("Something went wrong", error);
       response.status(500).send(error.message);
     }
   });
