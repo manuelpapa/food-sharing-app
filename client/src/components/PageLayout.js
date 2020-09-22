@@ -8,15 +8,19 @@ const Container = styled.div`
   display: flex;
   text-align: center;
   justify-content: center;
+  input,
+  select {
+    border: solid 1px var(--font-semi-dark);
+    padding: 0.5em;
+    background-color: #ffffff;
+  }
   p,
   input,
   select {
     font-size: 1em;
+    margin: 0em;
     font-family: "SFUIreg";
     color: var(--font-semi-dark);
-    padding: 0.5em;
-    margin: 0em;
-    background-color: #ffffff;
   }
 `;
 
