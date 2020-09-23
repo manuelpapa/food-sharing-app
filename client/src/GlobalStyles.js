@@ -28,6 +28,7 @@ const GlobalStyles = () => {
           --font-semi-dark: #818181;
           --tag-standard: #fefcc9;
           --accent: #66dba3;
+          --tag: #fefcc9;
         }
         /* SCROLLBAR */
         ::-webkit-scrollbar {
