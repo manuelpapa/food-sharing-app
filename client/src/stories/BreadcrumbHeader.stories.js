@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import BreadcrumbHeader from "../components/BreadcrumbHeader";
+import { BreadcrumbHeader } from "../components/BreadcrumbHeader";
 
 export default {
   title: "BreadcrumbHeader",
