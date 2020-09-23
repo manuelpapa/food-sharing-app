@@ -18,7 +18,7 @@ const Container = styled.div`
   input,
   select {
     font-size: 1em;
-    margin: 0em;
+    margin: 0;
     font-family: "SFUIreg";
     color: var(--font-semi-dark);
   }

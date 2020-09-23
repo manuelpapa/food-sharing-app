@@ -30,7 +30,7 @@ export default function Form() {
           type="number"
           placeholder="PLZ"
           name="PLZ"
-          ref={register({ required: true, min: 5, maxLength: 6 })}
+          ref={register({ required: true, min: 5, max: 6 })}
         />
         <input
           type="text"

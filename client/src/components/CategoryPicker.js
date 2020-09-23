@@ -14,7 +14,7 @@ const Field = styled.div`
     color: var(--font-semi-dark);
     font-size: 1em;
     padding: 0.5em 3em 0.5em 1em;
-    margin: 0em;
+    margin: 0;
     appearance: none;
     cursor: pointer;
   }
