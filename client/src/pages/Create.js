@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styled from "@emotion/styled";
-import Button from "../components/Button";
 import { useForm } from "react-hook-form";
+import styled from "@emotion/styled";
 import { DatePicker, RangePicker } from "../components/DateTimePickers";
+import Button from "../components/Button";
 import { PageLayout } from "../components/PageLayout";
 import TagComponent from "../components/Tag";
 
@@ -19,12 +19,7 @@ const Form = styled.div`
 
 const Dropdown = styled.div`
   cursor: pointer;
-  ::selection,
-  select:active,
-  select:checked,
-  select:focus {
-    outline: none;
-  }
+  outline: none;
 `;
 
 const Location = styled.div`
@@ -91,7 +86,6 @@ export function Create() {
   const preferences = ["glutenfrei", "laktosefrei", "vegan", "vegetarisch"];
 
   const [value, setValue] = useState("misc");
-
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(new Date());
 
@@ -100,9 +94,7 @@ export function Create() {
       <Form>
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2>Titel</h2>
-
           <input type="text" placeholder="Titel" name="titel" ref={register} />
-
           <h2>Kategorie</h2>
           <Dropdown>
             <select
@@ -127,45 +119,8 @@ export function Create() {
                 <input ref={register} />
               </TagComponent>
             ))}
-            {/* <Tag>
-              <label htmlFor="laktosefrei">
-                <input
-                  type="checkbox"
-                  placeholder="laktosefrei"
-                  name="laktosefrei"
-                  id="laktosefrei"
-                  ref={register}
-                />
-                laktosefrei
-              </label>
-            </Tag>
-            <Tag>
-              <label htmlFor="vegan">
-                <input
-                  type="checkbox"
-                  placeholder="vegan"
-                  name="vegan"
-                  id="vegan"
-                  ref={register}
-                />
-                vegan
-              </label>
-            </Tag>
-            <Tag>
-              <label htmlFor="vegetarisch">
-                <input
-                  type="checkbox"
-                  placeholder="vegetarisch"
-                  name="vegetarisch"
-                  id="vegetarisch"
-                  ref={register}
-                />
-                vegetarisch
-              </label>
-            </Tag> */}
           </Tags>
           <h2>Abholzeit</h2>
-
           <DatePicker
             selected={date}
             onChange={(date) => {
@@ -175,7 +130,6 @@ export function Create() {
             isClearable="true"
             ref={register}
           />
-
           <RangePicker
             format="H:mm"
             minuteStep={15}
@@ -185,7 +139,6 @@ export function Create() {
               setTime(date);
             }}
           />
-
           <h2>Abholort</h2>
           <Location>
             <input
@@ -218,56 +171,3 @@ export function Create() {
     </PageLayout>
   );
 }
-
-// const Form = styled.div`
-//   display: flex;
-//   background: hotpink;
-//   flex-direction: column;
-//   flex-wrap: wrap;
-//   input {
-//   }
-//   h2 {
-//     margin: 0.5em 0 0 0;
-//   }
-// `;
-
-// const CancelButton = styled(Button)`
-//   color: #ffffff;
-//   background: #de3a3a;
-// `;
-
-// const Location = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   margin: 0 2em;
-//   input {
-//     margin: 0.5em;
-//   }
-// `;
-
-// const Tags = styled.div`
-//   background: green;
-// `;
-
-// const Tag = styled.div`
-//   font-family: "SFUIreg";
-//   font-size: 1em;
-//   color: var(--font-semi-dark);
-//   border: 0;
-//   border-radius: 3em;
-//   padding: 1em 2em;
-//   margin: 0em 0.5em;
-//   display: inline-block;
-//   line-height: 1;
-//   cursor: pointer;
-//   background: yellow;
-
-//   input:hover & span {
-//     background-color: #efe0e0;
-//   }
-
-//   input:checked & span {
-//     background-color: #911;
-//     color: #fff;
-//   }
-// `;
