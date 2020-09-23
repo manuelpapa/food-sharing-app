@@ -1,5 +1,5 @@
 import React from "react";
-import BreadcrumbHeader from "./BreadcrumbHeader";
+import { BreadcrumbHeader, WhiteBreadcrumbHeader } from "./BreadcrumbHeader";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import Footer from "./Footer";
@@ -8,6 +8,7 @@ const Container = styled.div`
   display: flex;
   text-align: center;
   justify-content: center;
+
   input,
   select {
     border: solid 1px var(--font-semi-dark);
@@ -38,7 +39,28 @@ export const PageLayout = ({ children, showFooter }) => {
   );
 };
 
+const ColorContainer = styled(Container)`
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  background-image: var(--bg-main-gradient);
+`;
+
+export const ColorPageLayout = ({ children, showFooter }) => {
+  return (
+    <ColorContainer>
+      <WhiteBreadcrumbHeader />
+      <Main>{children}</Main>
+      {showFooter && <Footer />}
+    </ColorContainer>
+  );
+};
+
 PageLayout.propTypes = {
+  children: PropTypes.node,
+  showFooter: PropTypes.bool,
+};
+ColorPageLayout.propTypes = {
   children: PropTypes.node,
   showFooter: PropTypes.bool,
 };

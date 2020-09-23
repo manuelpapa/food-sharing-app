@@ -27,7 +27,13 @@ const GlobalStyles = () => {
           --bg-dark: #424953;
           --font-semi-dark: #818181;
           --tag-standard: #fefcc9;
+          --accent: #66dba3;
         }
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+          width: 0em;
+        }
+
         /* FONTS */
         @font-face {
           font-family: "SFUIbold";
@@ -70,7 +76,6 @@ const GlobalStyles = () => {
           font-size: 1em;
           margin: 0;
           padding: 0;
-          overflow: none;
         }
         small {
           font-family: "SFUIreg";
