@@ -32,7 +32,7 @@ const BackButton = styled.nav`
   }
 `;
 
-function BreadcrumbHeader() {
+export function BreadcrumbHeader() {
   const history = useHistory();
 
   return (
@@ -45,4 +45,25 @@ function BreadcrumbHeader() {
   );
 }
 
-export default BreadcrumbHeader;
+const WhiteBreadcrumbHeaderContainer = styled(BreadcrumbHeaderContainer)`
+  display: grid;
+  grid-template: 4em 1fr / 4em 1fr 4em;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  background: #ffffff;
+`;
+
+export function WhiteBreadcrumbHeader() {
+  const history = useHistory();
+
+  return (
+    <WhiteBreadcrumbHeaderContainer>
+      <BackButton onClick={() => history.goBack()}>
+        <img src={ArrowLeft} alt="zurück" />
+      </BackButton>
+      <Title>Details</Title>
+    </WhiteBreadcrumbHeaderContainer>
+  );
+}

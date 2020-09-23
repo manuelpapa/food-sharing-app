@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import BreadcrumbHeader from "../components/BreadcrumbHeader";
 import List from "../components/List";
 import { fetchResults } from "../api/results";
 import breadSrc from "../assets/icons/bread.svg";
+import { PageLayout } from "../components/PageLayout";
 // import beansSrc from "../assets/icons/beans.svg";
 // import cheeseSrc from "../assets/icons/cheese.svg";
 // import dishesSrc from "../assets/icons/dishes.svg";
@@ -20,11 +20,6 @@ import breadSrc from "../assets/icons/bread.svg";
 // import potatoesSrc from "../assets/icons/potatoes.svg";
 // import sweetsSrc from "../assets/icons/sweets.svg";
 // import vegetablesSrc from "../assets/icons/vegetables.svg";
-
-const Main = styled.div`
-  margin: 4em 0;
-  display: grid;
-`;
 
 const ListItem = styled.a`
   display: grid;
@@ -67,18 +62,15 @@ export function Categories() {
   });*/
 
   return (
-    <>
-      <BreadcrumbHeader />
-      <Main>
-        <List>
-          {results.map((result) => (
-            <ListItem key={result.id} href={`/offers/${result.id}`}>
-              <CategoryImage src={breadSrc} alt="offer title" />
-              <h2>Kategorie</h2>
-            </ListItem>
-          ))}
-        </List>
-      </Main>
-    </>
+    <PageLayout>
+      <List>
+        {results.map((result) => (
+          <ListItem key={result.id} href={`/offers/${result.id}`}>
+            <CategoryImage src={breadSrc} alt="offer title" />
+            <h2>Kategorie</h2>
+          </ListItem>
+        ))}
+      </List>
+    </PageLayout>
   );
 }
