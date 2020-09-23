@@ -13,7 +13,6 @@ const Container = styled.div`
   select {
     border: solid 1px var(--font-semi-dark);
     padding: 0.5em;
-    background-color: #ffffff;
   }
   p,
   input,
