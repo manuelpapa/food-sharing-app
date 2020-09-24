@@ -52,28 +52,14 @@ const ArrowIcon = styled.img`
 
 export function Results() {
   const [results, setResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  //const [query, setQuery] = useState("");
 
   useEffect(() => {
     async function fetchData() {
-      setIsLoading(true);
       const offers = await fetchResults();
       setResults(offers);
-      setIsLoading(false);
     }
     fetchData();
   }, []);
-
-  if (isLoading || results === null) {
-    //return <LoadingScreen />;
-    console.log("loading screen");
-  }
-
-  /*
-  const filteredResults = results.filter((result) => {
-    return result.title.toLowerCase().match(query.toLowerCase());
-  });*/
 
   return (
     <PageLayout showFooter>

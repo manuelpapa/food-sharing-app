@@ -65,6 +65,7 @@ export function UserSection() {
     }
     fetchData();
   }, []);
+
   return (
     <PageLayout showFooter>
       <List>
