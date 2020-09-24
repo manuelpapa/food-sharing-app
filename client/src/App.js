@@ -1,7 +1,7 @@
 import React from "react";
 import GlobalStyles from "./GlobalStyles";
 import Button from "./components/Button";
-import { emailInput, pwdInput } from "./components/InputField";
+// import { emailInput, pwdInput } from "./components/InputField";
 import LogoSrc from "../src/assets/icons/logo.svg";
 import styled from "@emotion/styled";
 import { BrowserRouter } from "react-router-dom";
@@ -67,8 +67,8 @@ function App() {
           <p>
             Hilf mit Müll zu vermeiden und teile, was noch köstlich und gut ist.
           </p>
-          <emailInput />
-          <pwdInput />
+          {/* <emailInput />
+          <pwdInput /> */}
           <Button>Login</Button>
           <small>Registrieren</small>
         </Main>
