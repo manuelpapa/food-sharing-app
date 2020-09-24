@@ -95,3 +95,54 @@ export async function fetchOffer() {
   };
   return mockedResult;
 }
+
+export async function fetchReservations(userId) {
+  const mockedResults = [
+    {
+      id: 1,
+      title: "Bananen",
+      category: "fruits",
+      city: "50968 Köln",
+      date: "15.08.2020",
+      time: "15:00 - 16:00",
+    },
+    {
+      id: 2,
+      title: "Joghurt",
+      category: "milk",
+      city: "50968 Köln",
+      date: "15.08.2020",
+      time: "14:00 - 15:00",
+    },
+    {
+      id: 3,
+      title: "Baguette",
+      category: "bread",
+      city: "50968 Köln",
+      date: "15.08.2020",
+      time: "14:00 - 15:00",
+    },
+  ];
+  return mockedResults;
+}
+export async function fetchOffers(userId) {
+  const mockedResults = [
+    {
+      id: 2,
+      title: "Joghurt",
+      category: "milk",
+      city: "50968 Köln",
+      date: "15.08.2020",
+      time: "14:00 - 15:00",
+    },
+    {
+      id: 3,
+      title: "Baguette",
+      category: "bread",
+      city: "50968 Köln",
+      date: "15.08.2020",
+      time: "14:00 - 15:00",
+    },
+  ];
+  return mockedResults;
+}
