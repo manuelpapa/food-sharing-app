@@ -11,10 +11,11 @@ import { PageLayout } from "../components/PageLayout";
 
 const ListItem = styled.a`
   display: grid;
-  grid-template: 5em 1fr 1em / 4em 1fr 4em;
+  grid-template: 6em 1fr 1em / 3em 1fr 4em;
   align-items: center;
-  margin-top: 1em;
+  margin-top: 1.2em;
   border-bottom: 1px solid #eeeeee;
+  text-align: left;
   text-decoration: none;
   color: var(--font-semi-dark);
 `;
@@ -75,34 +76,32 @@ export function Results() {
   });*/
 
   return (
-    <>
-      <PageLayout showFooter>
-        <List>
-          {results.map((result) => (
-            <ListItem key={result.id} href={`/offers/${result.id}`}>
-              <CategoryImage src={fruitsSrc} alt="offer title" />
-              <Description>
-                <h3>{result.title}</h3>
-                <p>
-                  <img src={LocationSrc} alt="locationpicker icon" />
-                  {result.city}
-                </p>
-                <p>
-                  <span>
-                    <img src={DateSrc} alt="calendar icon" />
-                    {result.date}
-                  </span>
-                  <span>
-                    <img src={TimeSrc} alt="clock icon" />
-                    {result.time}&nbsp;Uhr
-                  </span>
-                </p>
-              </Description>
-              <ArrowIcon src={ArrowSrc} alt="offer title" />
-            </ListItem>
-          ))}
-        </List>
-      </PageLayout>
-    </>
+    <PageLayout showFooter>
+      <List>
+        {results.map((result) => (
+          <ListItem key={result.id} href={`/offers/${result.id}`}>
+            <CategoryImage src={fruitsSrc} alt="offer title" />
+            <Description>
+              <h3>{result.title}</h3>
+              <p>
+                <img src={LocationSrc} alt="locationpicker icon" />
+                {result.city}
+              </p>
+              <p>
+                <span>
+                  <img src={DateSrc} alt="calendar icon" />
+                  {result.date}
+                </span>
+                <span>
+                  <img src={TimeSrc} alt="clock icon" />
+                  {result.time}&nbsp;Uhr
+                </span>
+              </p>
+            </Description>
+            <ArrowIcon src={ArrowSrc} alt="offer title" />
+          </ListItem>
+        ))}
+      </List>
+    </PageLayout>
   );
 }
