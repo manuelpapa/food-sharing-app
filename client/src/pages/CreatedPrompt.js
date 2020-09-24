@@ -38,7 +38,7 @@ export function CreatedPrompt() {
           und jemand anderem dabei noch eine Freude bereitest.
         </h3>
       </Description>
-      <WhiteButton>Meine Bestellungen</WhiteButton>
+      <WhiteButton>Meine Angebote</WhiteButton>
     </ColorPageLayout>
   );
 }
