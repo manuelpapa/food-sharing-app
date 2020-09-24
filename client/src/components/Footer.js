@@ -40,13 +40,13 @@ export default function Footer() {
     <FooterContainer>
       <FooterGradient />
       <FooterIcons>
-        <Link to="/AddIcon">
+        <Link to="/offers">
           <img src={AddIcon} alt="Essen teilen" />
         </Link>
-        <Link to="/ListIcon">
+        <Link to="/createoffer">
           <img src={ListIcon} alt="Liste durchsuchen" />
         </Link>
-        <Link to="/UserIcon">
+        <Link to="/usersection">
           <img src={UserIcon} alt="Mein Bereich" />
         </Link>
       </FooterIcons>

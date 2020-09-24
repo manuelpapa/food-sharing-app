@@ -2,6 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 
 const Input = styled("input")`
+  display: flex;
   font-size: 1em;
   padding: 0.5em 1.5em;
   margin: 0em;

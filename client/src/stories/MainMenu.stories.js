@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MainMenu } from "../components/MainMenu";
+import { MainMenu } from "../pages/MainMenu";
 
 export default {
   title: "Example/MainMenu",

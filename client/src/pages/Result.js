@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { fetchOffer } from "../api/results";
+import { Button } from "../components/Button";
+import { PageLayout } from "../components/PageLayout";
 import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
 import TimeSrc from "../assets/icons/time.svg";
-import fruitsSrc from "../assets/icons/fruits.svg";
-import { Button } from "../components/Button";
-import { PageLayout } from "../components/PageLayout";
 
 const ListItem = styled.a`
   color: var(--font-semi-dark);
@@ -77,11 +76,13 @@ export function Result() {
   if (isLoading || offers === null) {
     return <div>loading...</div>;
   }
-
   return (
     <PageLayout showFooter>
       <ListItem key={offers.id}>
-        <CategoryImage src={fruitsSrc} alt="offer title" />
+        <CategoryImage
+          src={`/categories/${offers.category}.svg`}
+          alt="offer title"
+        />
         <Title>
           <h1>{offers.title}</h1>
           <h2>{offers.category}</h2>

@@ -6,8 +6,7 @@ import ArrowSrc from "../assets/icons/arrowRight.svg";
 import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
 import TimeSrc from "../assets/icons/time.svg";
-import fruitsSrc from "../assets/icons/fruits.svg";
-import { PageLayout } from "../components/PageLayout";
+import { SearchPageLayout } from "../components/PageLayout";
 
 const ListItem = styled.a`
   display: grid;
@@ -38,7 +37,7 @@ const Description = styled.div`
     padding-bottom: 0.5em;
   }
   p {
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
   span {
     padding-right: 1em;
@@ -52,35 +51,24 @@ const ArrowIcon = styled.img`
 
 export function Results() {
   const [results, setResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  //const [query, setQuery] = useState("");
 
   useEffect(() => {
     async function fetchData() {
-      setIsLoading(true);
       const offers = await fetchResults();
       setResults(offers);
-      setIsLoading(false);
     }
     fetchData();
   }, []);
 
-  if (isLoading || results === null) {
-    //return <LoadingScreen />;
-    console.log("loading screen");
-  }
-
-  /*
-  const filteredResults = results.filter((result) => {
-    return result.title.toLowerCase().match(query.toLowerCase());
-  });*/
-
   return (
-    <PageLayout showFooter>
+    <SearchPageLayout showFooter>
       <List>
         {results.map((result) => (
           <ListItem key={result.id} href={`/offers/${result.id}`}>
-            <CategoryImage src={fruitsSrc} alt="offer title" />
+            <CategoryImage
+              src={`/categories/${result.category}.svg`}
+              alt="offer title"
+            />
             <Description>
               <h3>{result.title}</h3>
               <p>
@@ -102,6 +90,6 @@ export function Results() {
           </ListItem>
         ))}
       </List>
-    </PageLayout>
+    </SearchPageLayout>
   );
 }
