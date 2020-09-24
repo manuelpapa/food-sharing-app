@@ -10,8 +10,6 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  input {
-  }
   h2 {
     margin: 0.5em 0 0 0;
   }
@@ -30,8 +28,6 @@ const Location = styled.div`
     margin-bottom: 1em;
   }
 `;
-
-const Tags = styled.div``;
 
 export function Create() {
   const { register, handleSubmit, errors } = useForm();
@@ -113,13 +109,11 @@ export function Create() {
             </select>
           </Dropdown>
           <h2>Tags</h2>
-          <Tags>
-            {preferences?.map((preference) => (
-              <TagComponent key={preference} preference={preference}>
-                <input ref={register} />
-              </TagComponent>
-            ))}
-          </Tags>
+          {preferences?.map((preference) => (
+            <TagComponent key={preference} preference={preference}>
+              <input ref={register} />
+            </TagComponent>
+          ))}
           <h2>Abholzeit</h2>
           <DatePicker
             selected={date}

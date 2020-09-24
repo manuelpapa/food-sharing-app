@@ -83,7 +83,7 @@ export async function fetchOffer() {
     id: 1,
     title: "12 frische Bananen",
     category: "fruits",
-    tags: ["obst", "vegan", "vegetarisch", "laktosefrei", "glutenfrei"],
+    tags: ["vegan", "vegetarisch", "laktosefrei", "glutenfrei"],
     location: {
       name: "Papa",
       street: "Musterstraße 12",
