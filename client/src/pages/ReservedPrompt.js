@@ -2,7 +2,7 @@ import React from "react";
 import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
 import { ColorPageLayout } from "../components/PageLayout";
-import Button from "../components/Button";
+import { WhiteButton } from "../components/Button";
 
 const Logo = styled.img`
   max-width: 30%;
@@ -25,7 +25,7 @@ const Description = styled.div`
   }
 `;
 
-export function Success() {
+export function ReservedPrompt() {
   return (
     <ColorPageLayout showFooter>
       <Logo src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
@@ -38,7 +38,7 @@ export function Success() {
           Lass den anderen den Vortritt, wenn du doch verhindert bist.
         </h3>
       </Description>
-      <Button>Meine Bestellungen</Button>
+      <WhiteButton>Meine Bestellungen</WhiteButton>
     </ColorPageLayout>
   );
 }
