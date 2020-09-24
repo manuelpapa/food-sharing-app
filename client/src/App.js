@@ -1,6 +1,6 @@
 import React from "react";
 import GlobalStyles from "./GlobalStyles";
-import Button from "./components/Button";
+import { Button } from "./components/Button";
 import LogoSrc from "../src/assets/icons/logo.svg";
 import styled from "@emotion/styled";
 import { BrowserRouter } from "react-router-dom";
