@@ -1,12 +1,36 @@
 import styled from "@emotion/styled";
 import React, { useState } from "react";
+import categoriesIcon from "../assets/icons/categories.svg";
+
+const Picker = styled.div`
+  display: grid;
+  place-items: center;
+`;
 
 const Field = styled.div`
-  font-family: "SFUIbold";
-  font-size: 1em;
-  color: #000000;
-  border: 0;
-  cursor: pointer;
+  position: relative;
+  select {
+    font-family: "SFUIreg";
+    color: var(--font-semi-dark);
+    font-size: 1em;
+    padding: 0.5em 3em 0.5em 1em;
+    margin: 0;
+    appearance: none;
+    cursor: pointer;
+  }
+`;
+
+const Arrow = styled.span`
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: block;
+  height: 100%;
+  width: 3em;
+  pointer-events: none;
+  img {
+    margin: 0.7em;
+  }
 `;
 
 const CategoryPicker = () => {
@@ -32,15 +56,20 @@ const CategoryPicker = () => {
 
   const [value, setValue] = useState("misc");
   return (
-    <Field>
-      <select value={value} onChange={(e) => setValue(e.currentTarget.value)}>
-        {categories.map(({ label, value }) => (
-          <option key={value} value={value}>
-            {label}
-          </option>
-        ))}
-      </select>
-    </Field>
+    <Picker>
+      <Field>
+        <select value={value} onChange={(e) => setValue(e.currentTarget.value)}>
+          {categories.map(({ label, value }) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
+          ))}
+        </select>
+        <Arrow>
+          <img src={categoriesIcon} alt="pick a category" />
+        </Arrow>
+      </Field>
+    </Picker>
   );
 };
 

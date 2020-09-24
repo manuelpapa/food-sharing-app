@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import styled from "@emotion/styled";
-import BreadcrumbHeader from "../components/BreadcrumbHeader";
-import Footer from "../components/Footer";
 import { fetchOffer } from "../api/results";
 import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
@@ -10,10 +8,7 @@ import TimeSrc from "../assets/icons/time.svg";
 import fruitsSrc from "../assets/icons/fruits.svg";
 import Button from "../components/Button";
 import Tag from "../components/Tag";
-
-const Main = styled.div`
-  margin: 6em 1em;
-`;
+import { PageLayout } from "../components/PageLayout";
 
 const ListItem = styled.a`
   color: var(--font-semi-dark);
@@ -81,44 +76,40 @@ export function Result() {
   }
 
   return (
-    <>
-      <BreadcrumbHeader />
-      <Main>
-        <ListItem key={offers.id}>
-          <CategoryImage src={fruitsSrc} alt="offer title" />
-          <Title>
-            <h1>{offers.title}</h1>
-            <h2>{offers.category}</h2>
-          </Title>
-          <Tags>
-            {offers.tags.map((tag) => (
-              <Tag key={tag}>{`${tag}`}</Tag>
-            ))}
-          </Tags>
-          <Description>
-            <Location>
-              <p>
-                <img src={LocationSrc} alt="locationpicker icon" />
-                {offers.location.name}
-              </p>
-              <p>{offers.location.street}</p>
-              <p>
-                {offers.location.zip}&nbsp;{offers.location.city}
-              </p>
-            </Location>
+    <PageLayout showFooter>
+      <ListItem key={offers.id}>
+        <CategoryImage src={fruitsSrc} alt="offer title" />
+        <Title>
+          <h1>{offers.title}</h1>
+          <h2>{offers.category}</h2>
+        </Title>
+        <Tags>
+          {offers.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </Tags>
+        <Description>
+          <Location>
             <p>
-              <img src={DateSrc} alt="calendar icon" />
-              {offers.date}
+              <img src={LocationSrc} alt="locationpicker icon" />
+              {offers.location.name}
             </p>
+            <p>{offers.location.street}</p>
             <p>
-              <img src={TimeSrc} alt="clock icon" />
-              {offers.time}&nbsp;Uhr
+              {offers.location.zip}&nbsp;{offers.location.city}
             </p>
-          </Description>
-        </ListItem>
-        <Button>Reservieren</Button>
-      </Main>
-      <Footer />
-    </>
+          </Location>
+          <p>
+            <img src={DateSrc} alt="calendar icon" />
+            {offers.date}
+          </p>
+          <p>
+            <img src={TimeSrc} alt="clock icon" />
+            {offers.time}&nbsp;Uhr
+          </p>
+        </Description>
+      </ListItem>
+      <Button>Reservieren</Button>
+    </PageLayout>
   );
 }

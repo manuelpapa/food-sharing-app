@@ -1,27 +1,12 @@
 import React from "react";
-import BreadcrumbHeader from "../components/BreadcrumbHeader";
 import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
-import Footer from "../components/Footer";
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background-image: var(--bg-main-gradient);
-`;
+import { ColorPageLayout } from "../components/PageLayout";
+import Button from "../components/Button";
 
 const Logo = styled.img`
-  margin-top: 6em;
-  max-width: 30vw;
+  max-width: 30%;
   transition: all 0.3s ease-out;
-`;
-
-const Main = styled.div`
-  margin-top: 6em;
-  display: flex;
-  place-items: center;
-  flex-direction: column;
 `;
 
 const Title = styled.div`
@@ -40,40 +25,20 @@ const Description = styled.div`
   }
 `;
 
-const Button = styled.button`
-  font-family: "SFUIbold";
-  font-size: 1em;
-  color: #000000;
-  border: 0;
-  border-radius: 3em;
-  padding: 1em 2em;
-  margin: 2em 0em 0.5em;
-  display: inline-block;
-  line-height: 1;
-  background-image: #ffffff;
-  cursor: pointer;
-`;
-
 export function Success() {
   return (
-    <>
-      <Container>
-        <BreadcrumbHeader />
-        <Logo src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
-        <Main>
-          <Title>
-            <h1>Erfolgreich reserviert!</h1>
-          </Title>
-          <Description>
-            <h3>
-              Bitte sei fair und lasse nicht zu, dass Essen in der Tonne landet.
-              Lass den anderen den Vortritt, wenn du doch verhindert bist.
-            </h3>
-          </Description>
-          <Button>Meine Bestellungen</Button>
-        </Main>
-        <Footer />
-      </Container>
-    </>
+    <ColorPageLayout showFooter>
+      <Logo src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
+      <Title>
+        <h1>Erfolgreich reserviert!</h1>
+      </Title>
+      <Description>
+        <h3>
+          Bitte sei fair und lasse nicht zu, dass Essen in der Tonne landet.
+          Lass den anderen den Vortritt, wenn du doch verhindert bist.
+        </h3>
+      </Description>
+      <Button>Meine Bestellungen</Button>
+    </ColorPageLayout>
   );
 }

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
-import SearchHeader from "../components/SearchHeader";
-import Footer from "../components/Footer";
 import List from "../components/List";
 import { fetchResults } from "../api/results";
 import ArrowSrc from "../assets/icons/arrowRight.svg";
@@ -9,17 +7,13 @@ import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
 import TimeSrc from "../assets/icons/time.svg";
 import fruitsSrc from "../assets/icons/fruits.svg";
-
-const Main = styled.div`
-  margin: 4em 0;
-  display: grid;
-`;
+import { PageLayout } from "../components/PageLayout";
 
 const ListItem = styled.a`
   display: grid;
-  grid-template: 4em 1fr 1em / 3em 1fr 1em;
+  grid-template: 5em 1fr 1em / 4em 1fr 4em;
   align-items: center;
-  margin: 1em;
+  margin-top: 1em;
   border-bottom: 1px solid #eeeeee;
   text-decoration: none;
   color: var(--font-semi-dark);
@@ -37,7 +31,6 @@ const Description = styled.div`
   img {
     height: 1.2em;
     padding-right: 0.3em;
-    margin-bottom: -0.2em;
   }
   h3,
   p {
@@ -83,8 +76,7 @@ export function Results() {
 
   return (
     <>
-      <SearchHeader />
-      <Main>
+      <PageLayout showFooter>
         <List>
           {results.map((result) => (
             <ListItem key={result.id} href={`/offers/${result.id}`}>
@@ -110,8 +102,7 @@ export function Results() {
             </ListItem>
           ))}
         </List>
-      </Main>
-      <Footer />
+      </PageLayout>
     </>
   );
 }
