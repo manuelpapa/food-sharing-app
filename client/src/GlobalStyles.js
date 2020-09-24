@@ -81,7 +81,7 @@ const GlobalStyles = () => {
         small {
           font-family: "SFUIreg";
           font-size: 0.8em;
-          color: var(--font-semi-dark);
+          color: #000000;
         }
 
         code {

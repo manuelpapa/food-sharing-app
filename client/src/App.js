@@ -1,79 +1,44 @@
 import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import GlobalStyles from "./GlobalStyles";
-import { Button } from "./components/Button";
-import LogoSrc from "../src/assets/icons/logo.svg";
-import styled from "@emotion/styled";
-import { BrowserRouter } from "react-router-dom";
-
-// import {
-//   BrowserRouter as Router,
-//   Switch,
-//   Route,
-//   Link
-// } from "react-router-dom";
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  h4,
-  p {
-    text-align: center;
-    padding-bottom: 1em;
-  }
-`;
-
-const Header = styled.header`
-  flex-direction: column;
-  padding: 3em 0em;
-  img {
-    flex-direction: column;
-    padding: 1em 0;
-    max-width: 30vw;
-    display: block;
-    margin: auto;
-  }
-`;
-const Main = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  padding: 1em 3.2em;
-`;
-const Footer = styled.div`
-  flex-direction: column;
-  position: fixed;
-  bottom: 1em;
-`;
+import { Result } from "./pages/Result";
+import { Results } from "./pages/Results";
+import { MainMenu } from "./pages/MainMenu";
+import { Create } from "./pages/Create";
+import { UserSection } from "./pages/UserSection";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Container>
-        <GlobalStyles />
-        <Header>
-          <h2>Second Bite</h2>
-          <p>Saviors of food and waste.</p>
-
-          <img src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
-        </Header>
-        <Main>
-          <h4>Im Namen der Mundgerechtigkeit.</h4>
-          <p>
-            Mehr als 10 Millionen Tonnen Lebensmittel landen alleine in
-            Deutschland jedes Jahr im Müll!
-          </p>
-          <p>
-            Hilf mit Müll zu vermeiden und teile, was noch köstlich und gut ist.
-          </p>
-          <Button>Login</Button>
-          <small>Registrieren</small>
-        </Main>
-        <Footer>
-          <small>© Manuel Papa 2020</small>
-        </Footer>
-      </Container>
-    </BrowserRouter>
+    <>
+      <GlobalStyles />
+      <Router>
+        <Switch>
+          <Route path="/offers/:offer">
+            <Result />
+          </Route>
+          <Route path="/offers">
+            <Results />
+          </Route>
+          <Route path="/createoffer">
+            <Create />
+          </Route>
+          <Route path="/usersection">
+            <UserSection />
+          </Route>
+          <Route path="/menu">
+            <MainMenu />
+          </Route>
+          <Route path="/">
+            <Redirect to="/offers" />
+          </Route>
+        </Switch>
+      </Router>
+    </>
   );
 }
 
