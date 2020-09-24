@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import List from "../components/List";
-import { fetchResults } from "../api/results";
+import { PageLayout } from "../components/PageLayout";
+import { fetchOffers, fetchReservations } from "../api/results";
 import ArrowSrc from "../assets/icons/arrowRight.svg";
 import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
 import TimeSrc from "../assets/icons/time.svg";
 import fruitsSrc from "../assets/icons/fruits.svg";
-import { PageLayout } from "../components/PageLayout";
 
 const ListItem = styled.a`
   display: grid;
@@ -50,51 +50,68 @@ const ArrowIcon = styled.img`
   max-height: 1em;
 `;
 
-export function Results() {
-  const [results, setResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  //const [query, setQuery] = useState("");
+export function UserSection() {
+  const [reservations, setReservations] = useState([]);
+  const [offers, setOffers] = useState([]);
+  // TODO: get userId from auth-token
+  const userId = "1";
 
   useEffect(() => {
     async function fetchData() {
-      setIsLoading(true);
-      const offers = await fetchResults();
-      setResults(offers);
-      setIsLoading(false);
+      const fetchedReservations = await fetchReservations(userId);
+      setReservations(fetchedReservations);
+      const fetchedOffers = await fetchOffers(userId);
+      setOffers(fetchedOffers);
     }
     fetchData();
   }, []);
-
-  if (isLoading || results === null) {
-    //return <LoadingScreen />;
-    console.log("loading screen");
-  }
-
-  /*
-  const filteredResults = results.filter((result) => {
-    return result.title.toLowerCase().match(query.toLowerCase());
-  });*/
-
   return (
     <PageLayout showFooter>
       <List>
-        {results.map((result) => (
-          <ListItem key={result.id} href={`/offers/${result.id}`}>
+        <h2>Reservierungen</h2>
+        {reservations.map((reservation) => (
+          <ListItem key={reservation.id} href={`/offers/${reservation.id}`}>
             <CategoryImage src={fruitsSrc} alt="offer title" />
             <Description>
-              <h3>{result.title}</h3>
+              <h3>{reservation.title}</h3>
               <p>
                 <img src={LocationSrc} alt="locationpicker icon" />
-                {result.city}
+                {reservation.city}
               </p>
               <p>
                 <span>
                   <img src={DateSrc} alt="calendar icon" />
-                  {result.date}
+                  {reservation.date}
                 </span>
                 <span>
                   <img src={TimeSrc} alt="clock icon" />
-                  {result.time}&nbsp;Uhr
+                  {reservation.time}&nbsp;Uhr
+                </span>
+              </p>
+            </Description>
+            <ArrowIcon src={ArrowSrc} alt="offer title" />
+          </ListItem>
+        ))}
+      </List>
+      <List>
+        <h2>Angebote</h2>
+        {offers.map((offer) => (
+          <ListItem key={offer.id} href={`/offers/${offer.id}`}>
+            <CategoryImage src={fruitsSrc} alt="offer title" />
+            <Description>
+              <h3>{offer.title}</h3>
+              <p>
+                <img src={LocationSrc} alt="locationpicker icon" />
+                {offer.city}
+              </p>
+              <p>
+                <span>
+                  <img src={DateSrc} alt="calendar icon" />
+                  {offer.date}
+                </span>
+                <span>
+                  <img src={TimeSrc} alt="clock icon" />
+                  {offer.time}&nbsp;Uhr
                 </span>
               </p>
             </Description>

@@ -1,35 +1,25 @@
 import React from "react";
-import { BreadcrumbHeader } from "../components/BreadcrumbHeader";
 import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
 import { BrowserRouter } from "react-router-dom";
-
-const Container = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  background-image: var(--bg-main-gradient);
-`;
+import { ColorPageLayout } from "./PageLayout";
 
 const Logo = styled.img`
-  margin-top: 6em;
-  max-width: 30vw;
-`;
-
-const Main = styled.div`
-  margin-top: 6em;
-  display: flex;
-  place-items: center;
-  flex-direction: column;
+  max-width: 30%;
+  transition: all 0.3s ease-out;
 `;
 
 const Footer = styled.div`
   flex-direction: column;
-  position: fixed;
+
+  justify-content: center;
   bottom: 1em;
 `;
 
 const MenuLink = styled.a`
+  display: flex;
+  justify-content: center;
+  align-content: center;
   font-family: "SFUIbold";
   letter-spacing: -0.05em;
   font-size: 2em;
@@ -41,18 +31,15 @@ export function MainMenu() {
   return (
     <>
       <BrowserRouter>
-        <Container>
-          <BreadcrumbHeader />
+        <ColorPageLayout>
           <Logo src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
-          <Main>
-            <MenuLink>Angebote</MenuLink>
-            <MenuLink>Essen anbieten</MenuLink>
-            <MenuLink>Mein Bereich</MenuLink>
-          </Main>
+          <MenuLink>Angebote</MenuLink>
+          <MenuLink>Essen anbieten</MenuLink>
+          <MenuLink>Mein Bereich</MenuLink>
           <Footer>
             <small>© Manuel Papa 2020</small>
           </Footer>
-        </Container>
+        </ColorPageLayout>
       </BrowserRouter>
     </>
   );
