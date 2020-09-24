@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
 import { DatePicker, RangePicker } from "../components/DateTimePickers";
-import Button from "../components/Button";
+import { Button } from "../components/Button";
 import { PageLayout } from "../components/PageLayout";
 import TagComponent from "../components/Tag";
 

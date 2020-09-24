@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-const Button = styled.button`
+export const Button = styled.button`
   font-family: "SFUIbold";
   font-size: 1em;
   color: #000000;
@@ -13,5 +13,7 @@ const Button = styled.button`
   background-image: var(--bg-main-gradient);
   cursor: pointer;
 `;
-
-export default Button;
+export const WhiteButton = styled(Button)`
+  background: #ffffff;
+  cursor: pointer;
+`;

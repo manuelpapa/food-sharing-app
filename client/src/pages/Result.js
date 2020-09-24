@@ -5,7 +5,7 @@ import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
 import TimeSrc from "../assets/icons/time.svg";
 import fruitsSrc from "../assets/icons/fruits.svg";
-import Button from "../components/Button";
+import { Button } from "../components/Button";
 import { PageLayout } from "../components/PageLayout";
 
 const ListItem = styled.a`
