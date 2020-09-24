@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import styled from "@emotion/styled";
 import { fetchOffer } from "../api/results";
 import LocationSrc from "../assets/icons/location.svg";
@@ -7,11 +6,14 @@ import DateSrc from "../assets/icons/date.svg";
 import TimeSrc from "../assets/icons/time.svg";
 import fruitsSrc from "../assets/icons/fruits.svg";
 import Button from "../components/Button";
-import Tag from "../components/Tag";
 import { PageLayout } from "../components/PageLayout";
 
 const ListItem = styled.a`
   color: var(--font-semi-dark);
+  h1,
+  h2 {
+    margin: 0;
+  }
 `;
 
 const CategoryImage = styled.img`
@@ -24,36 +26,37 @@ const Title = styled.div`
   margin-bottom: 2em;
 `;
 
-const Tags = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  flex-direction: row;
-  margin-bottom: 2em;
+const Tag = styled.div`
+  font-family: "SFUIreg";
+  font-size: 1em;
+  color: var(--font-semi-dark);
+  border: 1px solid var(--font-semi-dark);
+  border-radius: 3em;
+  padding: 1em 2em;
+  margin: 0 0.5em 0.5em 0.5em;
+  display: inline-block;
+  line-height: 1;
+  background: "white";
+  cursor: pointer;
 `;
 
 const Description = styled.div`
+  margin-top: 1em;
   justify-content: center;
 
   img {
     height: 1.2em;
     padding-right: 0.3em;
-    margin-bottom: -0.2em;
+    margin-top: -0.2em;
   }
   p {
-    padding-bottom: 0.5em;
+    padding-bottom: 0.3em;
     font-size: 0.9em;
   }
 `;
 
 const Location = styled.div`
-  margin-bottom: 2em;
-  p:nth-child(2) {
-    padding-left: 1.2em;
-  }
-  p:last-child {
-    padding-left: 1.2em;
-  }
+  margin-bottom: 0.5em;
 `;
 
 export function Result() {
@@ -83,11 +86,9 @@ export function Result() {
           <h1>{offers.title}</h1>
           <h2>{offers.category}</h2>
         </Title>
-        <Tags>
-          {offers.tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </Tags>
+        {offers.tags.map((tag) => (
+          <Tag key={tag}>{tag}</Tag>
+        ))}
         <Description>
           <Location>
             <p>
