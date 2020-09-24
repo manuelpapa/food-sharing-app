@@ -1,24 +1,26 @@
 import React from "react";
 import styled from "@emotion/styled";
-import AddIcon from "../assets/icons/menu.svg";
-import UserIcon from "../assets/icons/sort.svg";
+import MenuIcon from "../assets/icons/menu.svg";
 import SearchInput from "./SearchInput";
 import { Link } from "react-router-dom";
 
 const SearchHeaderContainer = styled.header`
-  display: grid;
   align-items: center;
   position: fixed;
   left: 0;
   top: 0;
   width: 100vw;
   background: var(--bg-main-gradient);
+  input {
+    width: 100%;
+    margin: 0 0.8em;
+  }
 `;
 
 const SearchHeaderIcons = styled.nav`
-  padding: 0.7em 0.2em;
+  padding: 0.7em 0.5em;
   display: flex;
-  margin: 0 1em;
+  margin: 0;
   justify-content: space-between;
   & > a {
     display: flex;
@@ -33,13 +35,10 @@ function SearchHeader() {
   return (
     <SearchHeaderContainer>
       <SearchHeaderIcons>
-        <Link to="/AddIcon">
-          <img src={AddIcon} alt="Essen teilen" />
+        <Link to="/menu">
+          <img src={MenuIcon} alt="Icon für das Hauptmenü" />
         </Link>
         <SearchInput />
-        <Link to="/UserIcon">
-          <img src={UserIcon} alt="Mein Bereich" />
-        </Link>
       </SearchHeaderIcons>
     </SearchHeaderContainer>
   );

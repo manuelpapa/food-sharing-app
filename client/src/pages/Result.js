@@ -6,23 +6,6 @@ import { PageLayout } from "../components/PageLayout";
 import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
 import TimeSrc from "../assets/icons/time.svg";
-// import beansSrc from "../assets/icons/beans.svg";
-// import breadSrc from "../assets/icons/bread.svg";
-// import cheeseSrc from "../assets/icons/cheese.svg";
-// import dishesSrc from "../assets/icons/dishes.svg";
-// import drinksSrc from "../assets/icons/drinks.svg";
-// import fastfoodSrc from "../assets/icons/fastfood.svg";
-// import fishSrc from "../assets/icons/fish.svg";
-import fruitsSrc from "../assets/icons/fruits.svg";
-// import meatSrc from "../assets/icons/meat.svg";
-// import milkSrc from "../assets/icons/milk.svg";
-// import miscSrc from "../assets/icons/misc.svg";
-// import noodlesSrc from "../assets/icons/noodles.svg";
-// import nutsSrc from "../assets/icons/nuts.svg";
-// import oilSrc from "../assets/icons/oil.svg";
-// import potatoesSrc from "../assets/icons/potatoes.svg";
-// import sweetsSrc from "../assets/icons/sweets.svg";
-// import vegetablesSrc from "../assets/icons/vegetables.svg";
 
 const ListItem = styled.a`
   color: var(--font-semi-dark);
@@ -93,11 +76,13 @@ export function Result() {
   if (isLoading || offers === null) {
     return <div>loading...</div>;
   }
-
   return (
     <PageLayout showFooter>
       <ListItem key={offers.id}>
-        <CategoryImage src={fruitsSrc} alt="offer title" />
+        <CategoryImage
+          src={`/categories/${offers.category}.svg`}
+          alt="offer title"
+        />
         <Title>
           <h1>{offers.title}</h1>
           <h2>{offers.category}</h2>

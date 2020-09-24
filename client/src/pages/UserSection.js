@@ -38,7 +38,7 @@ const Description = styled.div`
     padding-bottom: 0.5em;
   }
   p {
-    font-size: 0.9em;
+    font-size: 0.8em;
   }
   span {
     padding-right: 1em;

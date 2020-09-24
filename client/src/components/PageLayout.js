@@ -1,5 +1,6 @@
 import React from "react";
 import { BreadcrumbHeader, WhiteBreadcrumbHeader } from "./BreadcrumbHeader";
+import SearchHeader from "./SearchHeader";
 import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import Footer from "./Footer";
@@ -38,6 +39,23 @@ export const PageLayout = ({ children, showFooter }) => {
   );
 };
 
+const SearchContainer = styled(Container)`
+  input {
+    border: none;
+    padding: 0.5em 1.5em;
+  }
+`;
+
+export const SearchPageLayout = ({ children, showFooter }) => {
+  return (
+    <SearchContainer>
+      <SearchHeader />
+      <Main>{children}</Main>
+      {showFooter && <Footer />}
+    </SearchContainer>
+  );
+};
+
 const ColorContainer = styled(Container)`
   display: flex;
   text-align: center;
@@ -56,6 +74,10 @@ export const ColorPageLayout = ({ children, showFooter }) => {
 };
 
 PageLayout.propTypes = {
+  children: PropTypes.node,
+  showFooter: PropTypes.bool,
+};
+SearchPageLayout.propTypes = {
   children: PropTypes.node,
   showFooter: PropTypes.bool,
 };
