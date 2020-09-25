@@ -41,11 +41,11 @@ const Footer = styled.div`
 export function LoginPage() {
   const { register, handleSubmit } = useForm();
 
-  // const onSubmit = (data) => {
-  async function onSubmit(data) {
+  const onSubmit = async (data) => {
+    // async function onSubmit(data) {
     const token = await fetchToken(data);
     return token;
-  }
+  };
 
   return (
     <>
