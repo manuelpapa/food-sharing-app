@@ -24,12 +24,46 @@ router.get("/available", verify, async (req, res) => {
   }
 });
 
+// Get reserved offers by user_id
+router.get("/user/reservations", verify, async (req, res) => {
+  try {
+    const reservedOffers = await Offer.find({ reserved_by: req.user });
+    res.send(reservedOffers);
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
+
+// Get created offers by user_id
+router.get("/user/offers", verify, async (req, res) => {
+  try {
+    const createdOffers = await Offer.find({ created_by: req.user });
+    res.send(createdOffers);
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
+
+// Get offer by offerId
+router.get("/:offerId", verify, async (req, res) => {
+  try {
+    const offer = await Offer.find({ _id: req.params.offerId });
+    if (!offer) return res.status(400).send("Offer does not exist");
+
+    res.send(offer);
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
+
 // Create offer and save to db
 router.post("/", verify, async (req, res) => {
+  console.log(req);
   try {
     const offer = new Offer({
       title: req.body.title,
       category: req.body.category,
+      category_name: req.body.category_name,
       date: req.body.date,
       start_time: req.body.start_time,
       end_time: req.body.end_time,
@@ -45,18 +79,6 @@ router.post("/", verify, async (req, res) => {
     } catch (error) {
       res.status(400).send(error);
     }
-  } catch (error) {
-    res.status(500).send("Internal server error");
-  }
-});
-
-// Get offer by offerId
-router.get("/:offerId", verify, async (req, res) => {
-  try {
-    const offer = await Offer.find({ _id: req.params.offerId });
-    if (!offer) return res.status(400).send("Offer does not exist");
-
-    res.send(offer);
   } catch (error) {
     res.status(500).send("Internal server error");
   }
