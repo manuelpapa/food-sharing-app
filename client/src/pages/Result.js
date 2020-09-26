@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 import styled from "@emotion/styled";
-import { fetchOffer } from "../api/results";
+import { fetchOffer, reserveOffer } from "../api/results";
 import { Button } from "../components/Button";
 import { PageLayout } from "../components/PageLayout";
 import LocationSrc from "../assets/icons/location.svg";
@@ -65,6 +65,7 @@ export function Result() {
   const location = useLocation();
   const pathParts = location.pathname.split("/");
   const offerId = pathParts[2];
+  const history = useHistory();
 
   useEffect(() => {
     async function fetchData() {
@@ -75,6 +76,13 @@ export function Result() {
     }
     fetchData();
   }, [offerId]);
+
+  async function reserveSuccess(offerId) {
+    const reservedOffer = await reserveOffer(offerId);
+    if (reservedOffer) {
+      history.push("/reserved");
+    }
+  }
 
   if (isLoading || offers === null) {
     return <div>loading...</div>;
@@ -114,7 +122,7 @@ export function Result() {
           </p>
         </Description>
       </ListItem>
-      <Button>Reservieren</Button>
+      <Button onClick={() => reserveSuccess(offerId)}>Reservieren</Button>
     </PageLayout>
   );
 }

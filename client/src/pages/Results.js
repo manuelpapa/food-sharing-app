@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import List from "../components/List";
-import { fetchResults } from "../api/results";
+import { fetchAvailableOffers } from "../api/results";
 import ArrowSrc from "../assets/icons/arrowRight.svg";
 import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
@@ -54,7 +54,7 @@ export function Results() {
 
   useEffect(() => {
     async function fetchData() {
-      const offers = await fetchResults();
+      const offers = await fetchAvailableOffers();
       setResults(offers);
     }
     fetchData();
