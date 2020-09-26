@@ -5,6 +5,8 @@ import { DatePicker, RangePicker } from "../components/DateTimePickers";
 import { Button } from "../components/Button";
 import { PageLayout } from "../components/PageLayout";
 import TagComponent from "../components/Tag";
+import { useHistory } from "react-router-dom";
+import { createOffer } from "../api/results";
 
 const Form = styled.div`
   display: flex;
@@ -30,14 +32,35 @@ const Location = styled.div`
 `;
 
 export function Create() {
+  const [value, setValue] = useState("misc");
+  const [date, setDate] = useState(null);
+  // const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState();
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-    console.log(date);
-    console.log(time);
-    console.log(errors);
-  };
+  const history = useHistory();
 
+  const onSubmit = async (data) => {
+    console.log(data);
+    const formattedDate = date.format("DD.MM.YYYY");
+    console.log(formattedDate);
+    const start_time = time[0].format("HH:mm");
+    const end_time = time[1].format("HH:mm");
+    const tags = ["vegetarisch", "vegan"];
+    console.log(start_time);
+    console.log(end_time);
+    console.log(errors);
+    console.log(tags);
+    const response = await createOffer(
+      data,
+      formattedDate,
+      start_time,
+      end_time,
+      tags
+    );
+    if (response) {
+      history.push("/reserved");
+    }
+  };
   const CancelButton = styled(Button)`
     color: #ffffff;
     background: #de3a3a;
@@ -81,21 +104,17 @@ export function Create() {
 
   const preferences = ["glutenfrei", "laktosefrei", "vegan", "vegetarisch"];
 
-  const [value, setValue] = useState("misc");
-  const [date, setDate] = useState(null);
-  const [time, setTime] = useState(new Date());
-
   return (
     <PageLayout>
       <Form>
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2>Titel</h2>
-          <input type="text" placeholder="Titel" name="titel" ref={register} />
+          <input type="text" placeholder="Titel" name="title" ref={register} />
           <h2>Kategorie</h2>
           <Dropdown>
             <select
               value={value}
-              name="categories"
+              name="category"
               ref={register}
               onChange={(e) => {
                 setValue(e.currentTarget.value);
@@ -138,20 +157,15 @@ export function Create() {
             <input
               type="text"
               placeholder="Straße und Hausnr."
-              name="Straße"
+              name="street"
               ref={register}
             />
-            <input type="text" placeholder="PLZ" name="PLZ" ref={register} />
-            <input
-              type="text"
-              placeholder="Stadt"
-              name="Stadt"
-              ref={register}
-            />
+            <input type="text" placeholder="PLZ" name="zip" ref={register} />
+            <input type="text" placeholder="Stadt" name="city" ref={register} />
             <input
               type="text"
               placeholder="Klingelname / Treffpunkt"
-              name="Klingelname / Treffpunkt"
+              name="name"
               ref={register}
             />
           </Location>
