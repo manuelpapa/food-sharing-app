@@ -49,53 +49,76 @@ export async function reserveOffer(offerId) {
   }
 }
 
-export async function fetchReservations(userId) {
-  const mockedResults = [
-    {
-      id: 1,
-      title: "Bananen",
-      category: "fruits",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "15:00 - 16:00",
-    },
-    {
-      id: 2,
-      title: "Joghurt",
-      category: "milk",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "14:00 - 15:00",
-    },
-    {
-      id: 3,
-      title: "Baguette",
-      category: "bread",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "14:00 - 15:00",
-    },
-  ];
-  return mockedResults;
+export async function fetchReservations() {
+  try {
+    const response = await fetch("/api/offers/user/reservations", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    alert(error.message);
+    return null;
+  }
 }
-export async function fetchOffers(userId) {
-  const mockedResults = [
-    {
-      id: 2,
-      title: "Joghurt",
-      category: "milk",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "14:00 - 15:00",
-    },
-    {
-      id: 3,
-      title: "Baguette",
-      category: "bread",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "14:00 - 15:00",
-    },
-  ];
-  return mockedResults;
+
+export async function fetchOffers() {
+  try {
+    const response = await fetch("/api/offers/user/offers", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (error) {
+    alert(error.message);
+    return null;
+  }
+}
+
+// Create Offer
+export async function createOffer(
+  data,
+  formattedDate,
+  start_time,
+  end_time,
+  tags
+) {
+  try {
+    const request = {
+      title: data.title,
+      category: data.category,
+      location: {
+        name: data.name,
+        street: data.street,
+        city: data.city,
+        zip: data.zip,
+      },
+      start_time: start_time,
+      end_time: end_time,
+      date: formattedDate,
+      tags: tags,
+    };
+    // console.log(request);
+    const response = await fetch("/api/offers/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(request),
+    });
+    const result = await response.text();
+    console.log(result);
+    return result;
+  } catch (error) {
+    alert(error.message);
+    return null;
+  }
 }
