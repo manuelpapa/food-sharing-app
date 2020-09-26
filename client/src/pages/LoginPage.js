@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
 import { fetchToken } from "../api/auth";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -40,9 +41,13 @@ const Footer = styled.div`
 
 export function LoginPage() {
   const { register, handleSubmit, errors } = useForm();
+  const history = useHistory();
 
   const onSubmit = (data) => {
-    fetchToken(data);
+    const response = fetchToken(data);
+    if (response) {
+      history.push("/offers");
+    }
     console.log(errors);
   };
 
