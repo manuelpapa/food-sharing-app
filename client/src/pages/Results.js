@@ -64,7 +64,7 @@ export function Results() {
     <SearchPageLayout showFooter>
       <List>
         {results.map((result) => (
-          <ListItem key={result.id} href={`/offers/${result.id}`}>
+          <ListItem key={result._id} href={`/offers/${result._id}`}>
             <CategoryImage
               src={`/categories/${result.category}.svg`}
               alt="offer title"
@@ -73,7 +73,7 @@ export function Results() {
               <h3>{result.title}</h3>
               <p>
                 <img src={LocationSrc} alt="locationpicker icon" />
-                {result.city}
+                {result.location.zip} {result.location.city}
               </p>
               <p>
                 <span>
@@ -82,7 +82,7 @@ export function Results() {
                 </span>
                 <span>
                   <img src={TimeSrc} alt="clock icon" />
-                  {result.time}&nbsp;Uhr
+                  {result.start_time} - {result.end_time} Uhr
                 </span>
               </p>
             </Description>

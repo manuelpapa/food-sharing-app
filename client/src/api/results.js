@@ -1,81 +1,18 @@
 export async function fetchResults() {
-  // TODO: Connect API here later
-  /*
-  const response = await fetch("localhost:3001/app/offers", {
-    header: {
-      //TODO:
-    },
-  });*/
-
-  //const result = await response.json();
-
-  const mockedResults = [
-    {
-      id: 1,
-      title: "Bananen",
-      category: "fruits",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "15:00 - 16:00",
-    },
-    {
-      id: 2,
-      title: "Joghurt",
-      category: "milk",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "14:00 - 15:00",
-    },
-    {
-      id: 3,
-      title: "Baguette",
-      category: "bread",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "14:00 - 15:00",
-    },
-    {
-      id: 4,
-      title: "Haxe",
-      category: "meat",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "14:00 - 15:00",
-    },
-    {
-      id: 5,
-      title: "Toast",
-      category: "bread",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "14:00 - 15:00",
-    },
-    {
-      id: 6,
-      title: "Kidney-Bohnen",
-      category: "beans",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "14:00 - 15:00",
-    },
-    {
-      id: 7,
-      title: "Margarine",
-      category: "oil",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "14:00 - 15:00",
-    },
-    {
-      id: 8,
-      title: "Cheddarkäse",
-      category: "cheese",
-      city: "50968 Köln",
-      date: "15.08.2020",
-      time: "14:00 - 15:00",
-    },
-  ];
-  return mockedResults;
+  try {
+    const response = await fetch("/api/offer/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const results = await response.json();
+    console.log(results[0]);
+    return results;
+  } catch (error) {
+    alert(error.message);
+    return null;
+  }
 }
 
 export async function fetchOffer() {
