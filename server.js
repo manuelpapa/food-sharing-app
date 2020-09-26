@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/auth");
-const offerRoute = require("./routes/offer");
+const offerRoute = require("./routes/offers");
 const app = express();
 
 const port = process.env.PORT || 3008;
@@ -24,7 +24,7 @@ async function main() {
   });
 
   app.use("/api/user", authRoute);
-  app.use("/api/offer", offerRoute);
+  app.use("/api/offers", offerRoute);
 
   app.get("/", (request, response) => {
     response.sendFile(__dirname + "/index.html");
