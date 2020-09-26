@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
+import { fetchToken } from "../api/auth";
 
 const Container = styled.div`
   display: flex;
@@ -38,11 +39,12 @@ const Footer = styled.div`
 `;
 
 export function LoginPage() {
-  const { login, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
 
-  function onSubmit(data) {
-    console.log(data);
-  }
+  const onSubmit = (data) => {
+    fetchToken(data);
+    console.log(errors);
+  };
 
   return (
     <>
@@ -63,9 +65,9 @@ export function LoginPage() {
             Hilf mit Müll zu vermeiden und teile, was noch köstlich und gut ist.
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input placeholder="Email" name="email" ref={login} />
-            <input placeholder="Password" name="pwd" ref={login} />
-            <button type="submit">Submit</button>
+            <input placeholder="Email" name="email" ref={register} />
+            <input placeholder="Password" name="password" ref={register} />
+            <button type="submit">Login</button>
           </form>
           <small>Registrieren</small>
         </Main>

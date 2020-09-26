@@ -11,6 +11,7 @@ import { Results } from "./pages/Results";
 import { MainMenu } from "./pages/MainMenu";
 import { Create } from "./pages/Create";
 import { UserSection } from "./pages/UserSection";
+import { LoginPage } from "./pages/LoginPage";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
       <GlobalStyles />
       <Router>
         <Switch>
+          <Route path="/user/login">
+            <LoginPage />
+          </Route>
           <Route path="/offers/:offer">
             <Result />
           </Route>
@@ -34,7 +38,7 @@ function App() {
             <MainMenu />
           </Route>
           <Route path="/">
-            <Redirect to="/offers" />
+            <Redirect to="/user/login" />
           </Route>
         </Switch>
       </Router>
