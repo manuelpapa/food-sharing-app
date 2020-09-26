@@ -1,12 +1,10 @@
-const User = require("../model/User");
 const Offer = require("../model/Offer");
 const router = require("express").Router();
 const verify = require("./verifyToken");
 
 router.get("/", verify, async (req, res) => {
-  // Now we have the _id in req.user and can find the User in the db
-  const user = await User.findById(req.user._id);
-  res.send(user);
+  const offers = await Offer.find({ reserved_by: null });
+  res.send(offers);
 });
 
 router.post("/", verify, async (req, res) => {
@@ -19,8 +17,8 @@ router.post("/", verify, async (req, res) => {
       end_time: req.body.end_time,
       location: req.body.location,
       tags: req.body.tags,
-      reserved_by: req.body.reserved_by,
-      created_by: req.body.created_by,
+      reserved_by: null,
+      created_by: req.user,
     });
 
     try {
