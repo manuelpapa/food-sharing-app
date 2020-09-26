@@ -12,6 +12,7 @@ import { MainMenu } from "./pages/MainMenu";
 import { Create } from "./pages/Create";
 import { UserSection } from "./pages/UserSection";
 import { LoginPage } from "./pages/LoginPage";
+import { ReservedPrompt } from "./pages/ReservedPrompt";
 
 function App() {
   return (
@@ -27,6 +28,9 @@ function App() {
           </Route>
           <Route path="/offers">
             <Results />
+          </Route>
+          <Route path="/reserved">
+            <ReservedPrompt />
           </Route>
           <Route path="/createoffer">
             <Create />
