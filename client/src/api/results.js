@@ -15,22 +15,36 @@ export async function fetchResults() {
   }
 }
 
-export async function fetchOffer() {
-  const mockedResult = {
-    id: 1,
-    title: "12 frische Bananen",
-    category: "fruits",
-    tags: ["vegan", "vegetarisch", "laktosefrei", "glutenfrei"],
-    location: {
-      name: "Papa",
-      street: "Musterstraße 12",
-      zip: "50968",
-      city: "Köln",
-    },
-    date: "15.08.2020",
-    time: "15:00 - 16:00",
-  };
-  return mockedResult;
+export async function fetchOffer(offerId) {
+  try {
+    const response = await fetch(`/api/offers/${offerId}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const result = await response.json();
+    console.log(result[0]);
+    return result[0];
+  } catch (error) {
+    alert(error.message);
+    return null;
+  }
+  // const mockedResult = {
+  //   id: 1,
+  //   title: "12 frische Bananen",
+  //   category: "fruits",
+  //   tags: ["vegan", "vegetarisch", "laktosefrei", "glutenfrei"],
+  //   location: {
+  //     name: "Papa",
+  //     street: "Musterstraße 12",
+  //     zip: "50968",
+  //     city: "Köln",
+  //   },
+  //   date: "15.08.2020",
+  //   time: "15:00 - 16:00",
+  // };
+  // return mockedResult;
 }
 
 export async function fetchReservations(userId) {

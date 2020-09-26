@@ -37,9 +37,9 @@ router.post("/", verify, async (req, res) => {
   }
 });
 
-router.get("/offer", verify, async (req, res) => {
+router.get("/:offerId", verify, async (req, res) => {
   try {
-    const offer = await Offer.find({ _id: req.body.offerId });
+    const offer = await Offer.find({ _id: req.params.offerId });
     if (!offer) return res.status(400).send("Offer does not exist.");
 
     res.send(offer);

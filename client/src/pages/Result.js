@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import styled from "@emotion/styled";
 import { fetchOffer } from "../api/results";
 import { Button } from "../components/Button";
@@ -61,24 +62,26 @@ const Location = styled.div`
 export function Result() {
   const [offers, setOffers] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  //const [query, setQuery] = useState("");
+  const location = useLocation();
+  const pathParts = location.pathname.split("/");
+  const offerId = pathParts[2];
 
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
-      const offers = await fetchOffer();
+      const offers = await fetchOffer(offerId);
       setOffers(offers);
       setIsLoading(false);
     }
     fetchData();
-  }, []);
+  }, [offerId]);
 
   if (isLoading || offers === null) {
     return <div>loading...</div>;
   }
   return (
     <PageLayout showFooter>
-      <ListItem key={offers.id}>
+      <ListItem key={offers._id}>
         <CategoryImage
           src={`/categories/${offers.category}.svg`}
           alt="offer title"
@@ -98,7 +101,7 @@ export function Result() {
             </p>
             <p>{offers.location.street}</p>
             <p>
-              {offers.location.zip}&nbsp;{offers.location.city}
+              {offers.location.zip} {offers.location.city}
             </p>
           </Location>
           <p>
@@ -107,7 +110,7 @@ export function Result() {
           </p>
           <p>
             <img src={TimeSrc} alt="clock icon" />
-            {offers.time}&nbsp;Uhr
+            {offers.start_time} - {offers.end_time} Uhr
           </p>
         </Description>
       </ListItem>
