@@ -5,6 +5,7 @@ const verify = require("./verifyToken");
 router.get("/", verify, async (req, res) => {
   try {
     const offers = await Offer.find({ reserved_by: null });
+    if (!offers) return res.status(400).send("No offers available.");
     res.send(offers);
   } catch (error) {
     res.status(500).send("Internal server error");
@@ -39,6 +40,8 @@ router.post("/", verify, async (req, res) => {
 router.get("/offer", verify, async (req, res) => {
   try {
     const offer = await Offer.find({ _id: req.body.offerId });
+    if (!offer) return res.status(400).send("Offer does not exist.");
+
     res.send(offer);
   } catch (error) {
     res.status(500).send("Internal server error");
