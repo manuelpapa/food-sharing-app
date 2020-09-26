@@ -53,14 +53,12 @@ const ArrowIcon = styled.img`
 export function UserSection() {
   const [reservations, setReservations] = useState([]);
   const [offers, setOffers] = useState([]);
-  // TODO: get userId from auth-token
-  const userId = "1";
 
   useEffect(() => {
     async function fetchData() {
-      const fetchedReservations = await fetchReservations(userId);
+      const fetchedReservations = await fetchReservations();
       setReservations(fetchedReservations);
-      const fetchedOffers = await fetchOffers(userId);
+      const fetchedOffers = await fetchOffers();
       setOffers(fetchedOffers);
     }
     fetchData();
@@ -71,13 +69,13 @@ export function UserSection() {
       <List>
         <h2>Reservierungen</h2>
         {reservations.map((reservation) => (
-          <ListItem key={reservation.id} href={`/offers/${reservation.id}`}>
+          <ListItem key={reservation._id} href={`/offers/${reservation._id}`}>
             <CategoryImage src={fruitsSrc} alt="offer title" />
             <Description>
               <h3>{reservation.title}</h3>
               <p>
                 <img src={LocationSrc} alt="locationpicker icon" />
-                {reservation.city}
+                {reservation.location.zip} {reservation.location.city}
               </p>
               <p>
                 <span>
@@ -86,7 +84,7 @@ export function UserSection() {
                 </span>
                 <span>
                   <img src={TimeSrc} alt="clock icon" />
-                  {reservation.time}&nbsp;Uhr
+                  {reservation.start_time} - {reservation.end_time} Uhr
                 </span>
               </p>
             </Description>
@@ -97,13 +95,13 @@ export function UserSection() {
       <List>
         <h2>Angebote</h2>
         {offers.map((offer) => (
-          <ListItem key={offer.id} href={`/offers/${offer.id}`}>
+          <ListItem key={offer._id} href={`/offers/${offer._id}`}>
             <CategoryImage src={fruitsSrc} alt="offer title" />
             <Description>
               <h3>{offer.title}</h3>
               <p>
                 <img src={LocationSrc} alt="locationpicker icon" />
-                {offer.city}
+                {offer.location.zip} {offer.location.city}
               </p>
               <p>
                 <span>
@@ -112,7 +110,7 @@ export function UserSection() {
                 </span>
                 <span>
                   <img src={TimeSrc} alt="clock icon" />
-                  {offer.time}&nbsp;Uhr
+                  {offer.start_time} - {offer.end_time} Uhr
                 </span>
               </p>
             </Description>

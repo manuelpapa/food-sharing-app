@@ -96,7 +96,6 @@ export function Result() {
         />
         <Title>
           <h1>{offers.title}</h1>
-          <h2>{offers.category}</h2>
         </Title>
         {offers.tags.map((tag) => (
           <Tag key={tag}>{tag}</Tag>
