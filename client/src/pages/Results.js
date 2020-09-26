@@ -62,34 +62,36 @@ export function Results() {
 
   return (
     <SearchPageLayout showFooter>
-      <List>
-        {results.map((result) => (
-          <ListItem key={result._id} href={`/offers/${result._id}`}>
-            <CategoryImage
-              src={`/categories/${result.category}.svg`}
-              alt="offer title"
-            />
-            <Description>
-              <h3>{result.title}</h3>
-              <p>
-                <img src={LocationSrc} alt="locationpicker icon" />
-                {result.location.zip} {result.location.city}
-              </p>
-              <p>
-                <span>
-                  <img src={DateSrc} alt="calendar icon" />
-                  {result.date}
-                </span>
-                <span>
-                  <img src={TimeSrc} alt="clock icon" />
-                  {result.start_time} - {result.end_time} Uhr
-                </span>
-              </p>
-            </Description>
-            <ArrowIcon src={ArrowSrc} alt="offer title" />
-          </ListItem>
-        ))}
-      </List>
+      <>
+        <List>
+          {results.map((result) => (
+            <ListItem key={result._id} href={`/offers/${result._id}`}>
+              <CategoryImage
+                src={`/categories/${result.category}.svg`}
+                alt="offer title"
+              />
+              <Description>
+                <h3>{result.title}</h3>
+                <p>
+                  <img src={LocationSrc} alt="locationpicker icon" />
+                  {result.location.zip} {result.location.city}
+                </p>
+                <p>
+                  <span>
+                    <img src={DateSrc} alt="calendar icon" />
+                    {result.date}
+                  </span>
+                  <span>
+                    <img src={TimeSrc} alt="clock icon" />
+                    {result.start_time} - {result.end_time} Uhr
+                  </span>
+                </p>
+              </Description>
+              <ArrowIcon src={ArrowSrc} alt="offer title" />
+            </ListItem>
+          ))}
+        </List>
+      </>
     </SearchPageLayout>
   );
 }
