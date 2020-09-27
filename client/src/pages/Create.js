@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
+import { useHistory } from "react-router-dom";
+import { createOffer } from "../api/results";
 import { DatePicker, RangePicker } from "../components/DateTimePickers";
 import { Button } from "../components/Button";
 import { PageLayout } from "../components/PageLayout";
 import TagComponent from "../components/Tag";
-import { useHistory } from "react-router-dom";
-import { createOffer } from "../api/results";
 
 const Form = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   h2 {
-    margin: 0.5em 0 0 0;
+    margin-top: 0.5em;
+    margin-bottom: 0em;
   }
 `;
 
@@ -31,6 +32,26 @@ const Location = styled.div`
   }
 `;
 
+const CancelButton = styled(Button)`
+  color: #ffffff;
+  background: #de3a3a;
+`;
+
+const FooterGradient = styled.div`
+  height: 0.4em;
+  background: var(--bg-main-gradient);
+`;
+
+const Footer = styled.div`
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  background: #fff;
+  & button {
+    margin: 0.5em;
+  }
+`;
 export function Create() {
   const [value, setValue] = useState("misc");
   const [date, setDate] = useState(null);
@@ -58,29 +79,9 @@ export function Create() {
       tags
     );
     if (response) {
-      history.push("/reserved");
+      history.push("/created");
     }
   };
-  const CancelButton = styled(Button)`
-    color: #ffffff;
-    background: #de3a3a;
-  `;
-
-  const FooterGradient = styled.div`
-    height: 0.4em;
-    background: var(--bg-main-gradient);
-  `;
-
-  const Footer = styled.div`
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100vw;
-    background: #fff;
-    & button {
-      margin: 0.5em;
-    }
-  `;
 
   const [categories] = useState([
     { label: "Brot & Backwaren", value: "bread" },
@@ -109,13 +110,22 @@ export function Create() {
       <Form>
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2>Titel</h2>
-          <input type="text" placeholder="Titel" name="title" ref={register} />
+          <input
+            type="text"
+            placeholder="z.B. 500g Steinpilze"
+            name="title"
+            ref={register({
+              required: true,
+            })}
+          />
           <h2>Kategorie</h2>
           <Dropdown>
             <select
               value={value}
               name="category"
-              ref={register}
+              ref={register({
+                required: true,
+              })}
               onChange={(e) => {
                 setValue(e.currentTarget.value);
               }}
@@ -135,19 +145,25 @@ export function Create() {
           ))}
           <h2>Abholzeit</h2>
           <DatePicker
+            name="date"
             selected={date}
             onChange={(date) => {
               setDate(date);
             }}
             dateFormat="dd.MM.yyyy"
             isClearable="true"
-            ref={register}
+            ref={register({
+              required: true,
+            })}
           />
           <RangePicker
+            name="time"
             format="H:mm"
             minuteStep={15}
             selected={time}
-            ref={register}
+            ref={register({
+              required: true,
+            })}
             onChange={(date) => {
               setTime(date);
             }}
@@ -158,21 +174,41 @@ export function Create() {
               type="text"
               placeholder="Straße und Hausnr."
               name="street"
-              ref={register}
+              ref={register({
+                required: true,
+              })}
             />
-            <input type="text" placeholder="PLZ" name="zip" ref={register} />
-            <input type="text" placeholder="Stadt" name="city" ref={register} />
+            <input
+              type="text"
+              placeholder="PLZ"
+              name="zip"
+              ref={register({
+                required: true,
+              })}
+            />
+            <input
+              type="text"
+              placeholder="Stadt"
+              name="city"
+              ref={register({
+                required: true,
+              })}
+            />
             <input
               type="text"
               placeholder="Klingelname / Treffpunkt"
               name="name"
-              ref={register}
+              ref={register({
+                required: true,
+              })}
             />
           </Location>
           <Footer>
             <FooterGradient />
             <Button type="submit">Anbieten</Button>
-            <CancelButton type="reset">Abbrechen</CancelButton>
+            <CancelButton onClick={() => history.goBack()}>
+              Abbrechen
+            </CancelButton>
           </Footer>
         </form>
       </Form>
