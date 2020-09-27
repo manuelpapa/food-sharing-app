@@ -17,13 +17,14 @@ const ListItem = styled.a`
 `;
 
 const CategoryImage = styled.img`
-  max-height: 8em;
-  margin-bottom: 2em;
+  max-width: 5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
 `;
 
 const Title = styled.div`
   text-align: center;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 `;
 
 const Tag = styled.div`
@@ -121,7 +122,11 @@ export function Result() {
           </p>
         </Description>
       </ListItem>
-      <Button onClick={() => reserveSuccess(offerId)}>Reservieren</Button>
+      {offers.reserved_by ? (
+        <div></div>
+      ) : (
+        <Button onClick={() => reserveSuccess(offerId)}>Reservieren</Button>
+      )}
     </PageLayout>
   );
 }

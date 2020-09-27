@@ -4,24 +4,44 @@ import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
 import { fetchToken } from "../api/auth";
 import { useHistory } from "react-router-dom";
+import { Button } from "../components/Button";
 
 const Container = styled.div`
   display: flex;
-  align-items: center;
+  justify-content: center;
   flex-direction: column;
+  h1,
+  h3,
   h4,
-  p {
+  p,
+  input,
+  select {
     text-align: center;
-    padding-bottom: 1em;
+  }
+  input,
+  select {
+    border: none;
+    border-bottom: solid 1px var(--font-semi-dark);
+    padding: 0.5em;
+    font-size: 0.8em;
+    margin: 0;
+    color: var(--font-semi-dark);
+  }
+  input {
+    text-align: center;
+    padding-bottom: 0.1em;
   }
 `;
 
 const Header = styled.header`
   flex-direction: column;
-  padding: 3em 0em;
+  padding: 1em 0em;
+  h1 {
+    margin: 0;
+  }
   img {
     flex-direction: column;
-    padding: 1em 0;
+    padding: 0.5em 0;
     max-width: 30vw;
     display: block;
     margin: auto;
@@ -33,10 +53,8 @@ const Main = styled.div`
   flex-direction: column;
   padding: 1em 3.2em;
 `;
-const Footer = styled.div`
-  flex-direction: column;
-  position: fixed;
-  bottom: 1em;
+const Form = styled.div`
+  background: yellow;
 `;
 
 export function LoginPage() {
@@ -56,7 +74,7 @@ export function LoginPage() {
       <Container>
         <Header>
           <h1>Second Bite</h1>
-          <p>Saviors of food and waste.</p>
+          <h3>Saviors of food and waste.</h3>
 
           <img src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
         </Header>
@@ -69,16 +87,28 @@ export function LoginPage() {
           <p>
             Hilf mit Müll zu vermeiden und teile, was noch köstlich und gut ist.
           </p>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input placeholder="Email" name="email" ref={register} />
-            <input placeholder="Password" name="password" ref={register} />
-            <button type="submit">Login</button>
-          </form>
-          <small>Registrieren</small>
+          <Form>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input
+                placeholder="Email"
+                name="email"
+                type="email"
+                ref={register({
+                  required: true,
+                })}
+              />
+              <input
+                placeholder="Password"
+                name="password"
+                type="password"
+                ref={register({
+                  required: true,
+                })}
+              />
+              <Button type="submit">Login</Button>
+            </form>
+          </Form>
         </Main>
-        <Footer>
-          <small>© Manuel Papa 2020</small>
-        </Footer>
       </Container>
     </>
   );

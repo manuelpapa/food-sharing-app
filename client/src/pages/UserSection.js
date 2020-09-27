@@ -7,7 +7,6 @@ import ArrowSrc from "../assets/icons/arrowRight.svg";
 import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
 import TimeSrc from "../assets/icons/time.svg";
-import fruitsSrc from "../assets/icons/fruits.svg";
 
 const ListItem = styled.a`
   display: grid;
@@ -20,28 +19,34 @@ const ListItem = styled.a`
   color: var(--font-semi-dark);
 `;
 
+const Title = styled.h2`
+  margin-top: 0.5em;
+`;
+
 const CategoryImage = styled.img`
   grid-column: 1 / 2;
-  max-height: 2em;
+  max-width: 2em;
+  margin-left: 0.6em;
 `;
 
 const Description = styled.div`
   grid-column: 2 / 3;
-  padding-left: 1em;
+  padding-left: 0.5em;
 
   img {
-    height: 1.2em;
+    height: 1.3em;
     padding-right: 0.3em;
   }
-  h3,
-  p {
-    padding-bottom: 0.5em;
+  h3 {
+    padding-bottom: 0;
+    font-weight: 600;
   }
   p {
+    padding-bottom: 0.5em;
     font-size: 0.8em;
   }
   span {
-    padding-right: 1em;
+    padding-right: 0.5em;
   }
 `;
 
@@ -67,10 +72,13 @@ export function UserSection() {
   return (
     <PageLayout showFooter>
       <List>
-        <h2>Reservierungen</h2>
+        <Title>Reservierungen</Title>
         {reservations.map((reservation) => (
           <ListItem key={reservation._id} href={`/offers/${reservation._id}`}>
-            <CategoryImage src={fruitsSrc} alt="offer title" />
+            <CategoryImage
+              src={`/categories/${reservation.category}.svg`}
+              alt="offer title"
+            />
             <Description>
               <h3>{reservation.title}</h3>
               <p>
@@ -93,10 +101,13 @@ export function UserSection() {
         ))}
       </List>
       <List>
-        <h2>Angebote</h2>
+        <Title>Angebote</Title>
         {offers.map((offer) => (
-          <ListItem key={offer._id} href={`/offers/${offer._id}`}>
-            <CategoryImage src={fruitsSrc} alt="offer title" />
+          <ListItem key={offer._id}>
+            <CategoryImage
+              src={`/categories/${offer.category}.svg`}
+              alt="offer title"
+            />
             <Description>
               <h3>{offer.title}</h3>
               <p>
@@ -114,7 +125,7 @@ export function UserSection() {
                 </span>
               </p>
             </Description>
-            <ArrowIcon src={ArrowSrc} alt="offer title" />
+            {/* <ArrowIcon src={ArrowSrc} alt="offer title" /> */}
           </ListItem>
         ))}
       </List>

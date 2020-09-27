@@ -21,26 +21,28 @@ const ListItem = styled.a`
 
 const CategoryImage = styled.img`
   grid-column: 1 / 2;
-  max-height: 2em;
+  max-width: 2em;
+  margin-left: 0.6em;
 `;
 
 const Description = styled.div`
   grid-column: 2 / 3;
-  padding-left: 1em;
+  padding-left: 0.5em;
 
   img {
-    height: 1.2em;
+    height: 1.3em;
     padding-right: 0.3em;
   }
-  h3,
-  p {
-    padding-bottom: 0.5em;
+  h3 {
+    padding-bottom: 0;
+    font-weight: 600;
   }
   p {
+    padding-bottom: 0.5em;
     font-size: 0.8em;
   }
   span {
-    padding-right: 1em;
+    padding-right: 0.5em;
   }
 `;
 

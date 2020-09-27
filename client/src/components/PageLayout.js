@@ -10,11 +10,6 @@ const Container = styled.div`
   text-align: center;
   justify-content: center;
 
-  input,
-  select {
-    border: solid 1px var(--font-semi-dark);
-    padding: 0.5em;
-  }
   p,
   input,
   select {
@@ -22,6 +17,18 @@ const Container = styled.div`
     margin: 0;
     font-family: "SFUIreg";
     color: var(--font-semi-dark);
+    padding: 0.5em;
+  }
+  input {
+    border: none;
+    border-bottom: solid 1px var(--font-semi-dark);
+    text-align: center;
+    font-size: 0.8em;
+    padding-bottom: 0.1em;
+  }
+
+  select {
+    border: solid 1px var(--font-semi-dark);
   }
 `;
 
