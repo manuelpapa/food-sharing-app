@@ -13,6 +13,7 @@ import { Create } from "./pages/Create";
 import { UserSection } from "./pages/UserSection";
 import { LoginPage } from "./pages/LoginPage";
 import { ReservedPrompt } from "./pages/ReservedPrompt";
+import { CreatedPrompt } from "./pages/CreatedPrompt";
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/reserved">
             <ReservedPrompt />
+          </Route>
+          <Route path="/created">
+            <CreatedPrompt />
           </Route>
           <Route path="/createoffer">
             <Create />
