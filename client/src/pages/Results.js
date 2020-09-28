@@ -53,20 +53,25 @@ const ArrowIcon = styled.img`
 
 export function Results() {
   const [results, setResults] = useState([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchData(query) {
       const offers = await fetchAvailableOffers();
       setResults(offers);
     }
     fetchData();
   }, []);
 
+  const searchedOffers = results.filter((result) => {
+    return result.title.toLowerCase().includes(query.toLowerCase());
+  });
+
   return (
-    <SearchPageLayout showFooter>
+    <SearchPageLayout showFooter value={query} onChange={setQuery}>
       <>
         <List>
-          {results.map((result) => (
+          {searchedOffers.map((result) => (
             <ListItem key={result._id} href={`/offers/${result._id}`}>
               <CategoryImage
                 src={`/categories/${result.category}.svg`}

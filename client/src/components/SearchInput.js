@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import PropTypes from "prop-types";
 
 const Input = styled("input")`
   display: flex;
@@ -13,6 +14,18 @@ const Input = styled("input")`
   outline: none;
 `;
 
-export default function SearchInput() {
-  return <Input placeholder="Suchen..." autoFocus />;
-}
+export const SearchInput = ({ value, onChange }) => {
+  return (
+    <Input
+      placeholder="Suchen"
+      value={value}
+      onChange={(event) => onChange(event.target.value.trim())}
+      autoFocus
+    />
+  );
+};
+
+SearchInput.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+};

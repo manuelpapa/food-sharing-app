@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "@emotion/styled";
 import MenuIcon from "../assets/icons/menu.svg";
-import SearchInput from "./SearchInput";
+import { SearchInput } from "./SearchInput";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const SearchHeaderContainer = styled.header`
   align-items: center;
@@ -31,17 +32,22 @@ const SearchHeaderIcons = styled.nav`
   }
 `;
 
-function SearchHeader() {
+function SearchHeader({ value, onChange }) {
   return (
     <SearchHeaderContainer>
       <SearchHeaderIcons>
         <Link to="/menu">
           <img src={MenuIcon} alt="Icon für das Hauptmenü" />
         </Link>
-        <SearchInput />
+        <SearchInput value={value} onChange={onChange} />
       </SearchHeaderIcons>
     </SearchHeaderContainer>
   );
 }
 
 export default SearchHeader;
+
+SearchHeader.propTypes = {
+  value: PropTypes.string,
+  onChange: PropTypes.func,
+};

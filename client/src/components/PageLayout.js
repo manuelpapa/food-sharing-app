@@ -13,7 +13,6 @@ const Container = styled.div`
   p,
   input,
   select {
-    font-size: 1em;
     margin: 0;
     font-family: "SFUIreg";
     color: var(--font-semi-dark);
@@ -25,6 +24,12 @@ const Container = styled.div`
     text-align: center;
     font-size: 0.8em;
     padding-bottom: 0.1em;
+    :focus {
+      outline: none;
+    }
+    :invalid {
+      border: 1px solid #de3a3a;
+    }
   }
 
   select {
@@ -53,10 +58,10 @@ const SearchContainer = styled(Container)`
   }
 `;
 
-export const SearchPageLayout = ({ children, showFooter }) => {
+export const SearchPageLayout = ({ children, showFooter, value, onChange }) => {
   return (
     <SearchContainer>
-      <SearchHeader />
+      <SearchHeader value={value} onChange={onChange} />
       <Main>{children}</Main>
       {showFooter && <Footer />}
     </SearchContainer>
@@ -87,6 +92,8 @@ PageLayout.propTypes = {
 SearchPageLayout.propTypes = {
   children: PropTypes.node,
   showFooter: PropTypes.bool,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
 };
 ColorPageLayout.propTypes = {
   children: PropTypes.node,
