@@ -16,11 +16,20 @@ const Form = styled.div`
     margin-top: 0.5em;
     margin-bottom: 0em;
   }
+  input {
+    :invalid,
+    :required {
+      border: 1px solid #de3a3a;
+    }
+  }
 `;
 
 const Dropdown = styled.div`
   cursor: pointer;
-  outline: none;
+  select,
+  option {
+    outline: none;
+  }
 `;
 
 const Location = styled.div`
@@ -32,16 +41,6 @@ const Location = styled.div`
   }
 `;
 
-const CancelButton = styled(Button)`
-  color: #ffffff;
-  background: #de3a3a;
-`;
-
-const FooterGradient = styled.div`
-  height: 0.4em;
-  background: var(--bg-main-gradient);
-`;
-
 const Footer = styled.div`
   position: fixed;
   left: 0;
@@ -51,6 +50,14 @@ const Footer = styled.div`
   & button {
     margin: 0.5em;
   }
+`;
+const FooterGradient = styled.div`
+  height: 0.4em;
+  background: var(--bg-main-gradient);
+`;
+const CancelButton = styled(Button)`
+  color: #ffffff;
+  background: #de3a3a;
 `;
 export function Create() {
   const [value, setValue] = useState("misc");
@@ -172,6 +179,14 @@ export function Create() {
           <Location>
             <input
               type="text"
+              placeholder="Klingelname / Treffpunkt"
+              name="name"
+              ref={register({
+                required: true,
+              })}
+            />
+            <input
+              type="text"
               placeholder="Straße und Hausnr."
               name="street"
               ref={register({
@@ -190,14 +205,6 @@ export function Create() {
               type="text"
               placeholder="Stadt"
               name="city"
-              ref={register({
-                required: true,
-              })}
-            />
-            <input
-              type="text"
-              placeholder="Klingelname / Treffpunkt"
-              name="name"
               ref={register({
                 required: true,
               })}

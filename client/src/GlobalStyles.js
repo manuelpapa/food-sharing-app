@@ -84,6 +84,12 @@ const GlobalStyles = () => {
           color: #000000;
         }
 
+        input {
+          :invalid,
+          :required {
+            border: 1px solid #de3a3a;
+          }
+        }
         code {
         }
       `}

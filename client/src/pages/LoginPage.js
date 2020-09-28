@@ -30,6 +30,13 @@ const Container = styled.div`
   input {
     text-align: center;
     padding-bottom: 0.1em;
+    :focus {
+      outline: none;
+    }
+    :invalid,
+    :required {
+      border: 1px solid #de3a3a;
+    }
   }
 `;
 
@@ -52,9 +59,11 @@ const Main = styled.div`
   align-items: center;
   flex-direction: column;
   padding: 1em 3.2em;
-`;
-const Form = styled.div`
-  background: yellow;
+  form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
 `;
 
 export function LoginPage() {
@@ -87,27 +96,25 @@ export function LoginPage() {
           <p>
             Hilf mit Müll zu vermeiden und teile, was noch köstlich und gut ist.
           </p>
-          <Form>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <input
-                placeholder="Email"
-                name="email"
-                type="email"
-                ref={register({
-                  required: true,
-                })}
-              />
-              <input
-                placeholder="Password"
-                name="password"
-                type="password"
-                ref={register({
-                  required: true,
-                })}
-              />
-              <Button type="submit">Login</Button>
-            </form>
-          </Form>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              placeholder="Email"
+              name="email"
+              type="email"
+              ref={register({
+                required: true,
+              })}
+            />
+            <input
+              placeholder="Password"
+              name="password"
+              type="password"
+              ref={register({
+                required: true,
+              })}
+            />
+            <Button type="submit">Login</Button>
+          </form>
         </Main>
       </Container>
     </>
