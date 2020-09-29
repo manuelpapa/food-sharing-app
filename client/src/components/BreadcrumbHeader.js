@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "@emotion/styled";
 import ArrowLeft from "../assets/icons/arrowLeft.svg";
+import LogoSrc from "../assets/icons/logo.svg";
 
 const BreadcrumbHeaderContainer = styled.header`
   display: grid;
@@ -13,7 +14,17 @@ const BreadcrumbHeaderContainer = styled.header`
   background: var(--bg-main-gradient);
 `;
 
-const Title = styled.h3`
+const Logo = styled.img`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 2.5em;
+  margin-top: 0.6em;
+`;
+
+const Title = styled.div`
+  font-family: "SFUIheavy";
+  letter-spacing: -0.05em;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -40,7 +51,7 @@ export function BreadcrumbHeader() {
       <BackButton onClick={() => history.goBack()}>
         <img src={ArrowLeft} alt="zurück" />
       </BackButton>
-      <Title>Details</Title>
+      <Logo src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
     </BreadcrumbHeaderContainer>
   );
 }
@@ -63,7 +74,7 @@ export function WhiteBreadcrumbHeader() {
       <BackButton onClick={() => history.goBack()}>
         <img src={ArrowLeft} alt="zurück" />
       </BackButton>
-      <Title>Details</Title>
+      <Title>Second Bite</Title>
     </WhiteBreadcrumbHeaderContainer>
   );
 }

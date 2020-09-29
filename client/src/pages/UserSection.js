@@ -17,6 +17,9 @@ const ListItem = styled.a`
   text-align: left;
   text-decoration: none;
   color: var(--font-semi-dark);
+  :last-child {
+    border-bottom: none;
+  }
 `;
 
 const Title = styled.h2`
