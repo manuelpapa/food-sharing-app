@@ -62,22 +62,15 @@ const CancelButton = styled(Button)`
 export function Create() {
   const [value, setValue] = useState("misc");
   const [date, setDate] = useState(null);
-  // const [time, setTime] = useState(new Date());
   const [time, setTime] = useState();
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit } = useForm();
   const history = useHistory();
 
   const onSubmit = async (data) => {
-    console.log(data);
     const formattedDate = date.format("DD.MM.YYYY");
-    console.log(formattedDate);
     const start_time = time[0].format("HH:mm");
     const end_time = time[1].format("HH:mm");
     const tags = ["vegetarisch", "vegan"];
-    console.log(start_time);
-    console.log(end_time);
-    console.log(errors);
-    console.log(tags);
     const response = await createOffer(
       data,
       formattedDate,
@@ -213,9 +206,7 @@ export function Create() {
           <Footer>
             <FooterGradient />
             <Button type="submit">Anbieten</Button>
-            <CancelButton onClick={() => history.goBack()}>
-              Abbrechen
-            </CancelButton>
+            <CancelButton onClick={history.goBack}>Abbrechen</CancelButton>
           </Footer>
         </form>
       </Form>

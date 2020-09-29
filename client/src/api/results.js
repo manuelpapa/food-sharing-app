@@ -7,10 +7,8 @@ export async function fetchAvailableOffers() {
       },
     });
     const results = await response.json();
-    console.log(results[0]);
     return results;
   } catch (error) {
-    alert(error.message);
     return null;
   }
 }
@@ -24,10 +22,8 @@ export async function fetchOffer(offerId) {
       },
     });
     const result = await response.json();
-    console.log(result[0]);
     return result[0];
   } catch (error) {
-    alert(error.message);
     return null;
   }
 }
@@ -44,41 +40,36 @@ export async function reserveOffer(offerId) {
     const result = await response.json();
     return result;
   } catch (error) {
-    alert(error.message);
     return null;
   }
 }
 
 export async function fetchReservations() {
   try {
-    const response = await fetch("/api/offers/user/reservations", {
+    const response = await fetch("/api/user/reservations", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
-    alert(error.message);
     return null;
   }
 }
 
 export async function fetchOffers() {
   try {
-    const response = await fetch("/api/offers/user/offers", {
+    const response = await fetch("/api/user/offers", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     });
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (error) {
-    alert(error.message);
     return null;
   }
 }
@@ -106,7 +97,6 @@ export async function createOffer(
       date: formattedDate,
       tags: tags,
     };
-    // console.log(request);
     const response = await fetch("/api/offers/", {
       method: "POST",
       headers: {
@@ -115,10 +105,8 @@ export async function createOffer(
       body: JSON.stringify(request),
     });
     const result = await response.text();
-    console.log(result);
     return result;
   } catch (error) {
-    alert(error.message);
     return null;
   }
 }
