@@ -2,6 +2,8 @@ const router = require("express").Router();
 const User = require("../model/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const verify = require("./verifyToken");
+const Offer = require("../model/Offer");
 const { registerValidation, loginValidation } = require("../validation");
 
 router.post("/register", async (req, res) => {
@@ -58,6 +60,26 @@ router.post("/login", async (req, res) => {
     res.json(token);
   } catch (error) {
     console.error(error);
+    res.status(500).send("Internal server error");
+  }
+});
+
+// Get created offers by user_id
+router.get("/offers", verify, async (req, res) => {
+  try {
+    const createdOffers = await Offer.find({ created_by: req.user });
+    res.send(createdOffers);
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
+
+// Get reserved offers by user_id
+router.get("/reservations", verify, async (req, res) => {
+  try {
+    const reservedOffers = await Offer.find({ reserved_by: req.user });
+    res.send(reservedOffers);
+  } catch (error) {
     res.status(500).send("Internal server error");
   }
 });

@@ -24,26 +24,6 @@ router.get("/available", verify, async (req, res) => {
   }
 });
 
-// Get reserved offers by user_id
-router.get("/user/reservations", verify, async (req, res) => {
-  try {
-    const reservedOffers = await Offer.find({ reserved_by: req.user });
-    res.send(reservedOffers);
-  } catch (error) {
-    res.status(500).send("Internal server error");
-  }
-});
-
-// Get created offers by user_id
-router.get("/user/offers", verify, async (req, res) => {
-  try {
-    const createdOffers = await Offer.find({ created_by: req.user });
-    res.send(createdOffers);
-  } catch (error) {
-    res.status(500).send("Internal server error");
-  }
-});
-
 // Get offer by offerId
 router.get("/:offerId", verify, async (req, res) => {
   try {
