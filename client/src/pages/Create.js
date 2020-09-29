@@ -60,7 +60,7 @@ const CancelButton = styled(Button)`
   background: #de3a3a;
 `;
 export function Create() {
-  const [value, setValue] = useState("misc");
+  const [category, setCategory] = useState("misc");
   const [date, setDate] = useState(null);
   const [time, setTime] = useState();
   const { register, handleSubmit } = useForm();
@@ -84,23 +84,23 @@ export function Create() {
   };
 
   const [categories] = useState([
-    { label: "Brot & Backwaren", value: "bread" },
-    { label: "Fast Food", value: "fastfood" },
-    { label: "Fisch & Fischprodukte", value: "fish" },
-    { label: "Fleisch & Fleischprodukte", value: "meat" },
-    { label: "Gemüse", value: "vegetables" },
-    { label: "Gerichte & Speisen", value: "dishes" },
-    { label: "Getränke", value: "drinks" },
-    { label: "Hülsenfrüchte", value: "beans" },
-    { label: "Käse", value: "cheese" },
-    { label: "Milch & Milcherzeugnisse", value: "milk" },
-    { label: "Nudeln & Teigwaren", value: "noodles" },
-    { label: "Nüsse & Samen", value: "nuts" },
-    { label: "Obst & Obstprodukte", value: "fruits" },
-    { label: "Öle & Fette", value: "oil" },
-    { label: "Kartoffelprodukte", value: "potatoes" },
-    { label: "Süßwaren", value: "sweets" },
-    { label: "Verschiedenes", value: "misc" },
+    { label: "Brot & Backwaren", category: "bread" },
+    { label: "Fast Food", category: "fastfood" },
+    { label: "Fisch & Fischprodukte", category: "fish" },
+    { label: "Fleisch & Fleischprodukte", category: "meat" },
+    { label: "Gemüse", category: "vegetables" },
+    { label: "Gerichte & Speisen", category: "dishes" },
+    { label: "Getränke", category: "drinks" },
+    { label: "Hülsenfrüchte", category: "beans" },
+    { label: "Käse", category: "cheese" },
+    { label: "Milch & Milcherzeugnisse", category: "milk" },
+    { label: "Nudeln & Teigwaren", category: "noodles" },
+    { label: "Nüsse & Samen", category: "nuts" },
+    { label: "Obst & Obstprodukte", category: "fruits" },
+    { label: "Öle & Fette", category: "oil" },
+    { label: "Kartoffelprodukte", category: "potatoes" },
+    { label: "Süßwaren", category: "sweets" },
+    { label: "Verschiedenes", category: "misc" },
   ]);
 
   const preferences = ["glutenfrei", "laktosefrei", "vegan", "vegetarisch"];
@@ -121,17 +121,17 @@ export function Create() {
           <h2>Kategorie</h2>
           <Dropdown>
             <select
-              value={value}
+              value={category}
               name="category"
               ref={register({
                 required: true,
               })}
               onChange={(e) => {
-                setValue(e.currentTarget.value);
+                setCategory(e.currentTarget.value);
               }}
             >
-              {categories.map(({ label, value }) => (
-                <option key={value} value={value}>
+              {categories.map(({ label, category }) => (
+                <option key={category} value={category}>
                   {label}
                 </option>
               ))}
