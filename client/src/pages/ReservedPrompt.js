@@ -3,6 +3,7 @@ import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
 import { ColorPageLayout } from "../components/PageLayout";
 import { WhiteButton } from "../components/Button";
+import { useHistory } from "react-router-dom";
 
 const Logo = styled.img`
   max-width: 30%;
@@ -26,6 +27,11 @@ const Description = styled.div`
 `;
 
 export function ReservedPrompt() {
+  const history = useHistory();
+
+  function handleClick() {
+    history.push("/usersection");
+  }
   return (
     <ColorPageLayout showFooter>
       <Logo src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
@@ -38,7 +44,9 @@ export function ReservedPrompt() {
           Lass den anderen den Vortritt, wenn du doch verhindert bist.
         </h3>
       </Description>
-      <WhiteButton>Meine Bestellungen</WhiteButton>
+      <WhiteButton onClick={() => handleClick()}>
+        Meine Bestellungen
+      </WhiteButton>
     </ColorPageLayout>
   );
 }

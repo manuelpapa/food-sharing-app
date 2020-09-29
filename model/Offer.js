@@ -13,6 +13,9 @@ const offerSchema = new mongoose.Schema({
     min: 3,
     max: 255,
   },
+  category_name: {
+    type: String,
+  },
   date: {
     type: String,
     required: true,

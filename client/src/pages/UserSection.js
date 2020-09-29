@@ -7,7 +7,6 @@ import ArrowSrc from "../assets/icons/arrowRight.svg";
 import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
 import TimeSrc from "../assets/icons/time.svg";
-import fruitsSrc from "../assets/icons/fruits.svg";
 
 const ListItem = styled.a`
   display: grid;
@@ -20,28 +19,34 @@ const ListItem = styled.a`
   color: var(--font-semi-dark);
 `;
 
+const Title = styled.h2`
+  margin-top: 0.5em;
+`;
+
 const CategoryImage = styled.img`
   grid-column: 1 / 2;
-  max-height: 2em;
+  max-width: 2em;
+  margin-left: 0.6em;
 `;
 
 const Description = styled.div`
   grid-column: 2 / 3;
-  padding-left: 1em;
+  padding-left: 0.5em;
 
   img {
-    height: 1.2em;
+    height: 1.3em;
     padding-right: 0.3em;
   }
-  h3,
-  p {
-    padding-bottom: 0.5em;
+  h3 {
+    padding-bottom: 0;
+    font-weight: 600;
   }
   p {
+    padding-bottom: 0.5em;
     font-size: 0.8em;
   }
   span {
-    padding-right: 1em;
+    padding-right: 0.5em;
   }
 `;
 
@@ -53,14 +58,12 @@ const ArrowIcon = styled.img`
 export function UserSection() {
   const [reservations, setReservations] = useState([]);
   const [offers, setOffers] = useState([]);
-  // TODO: get userId from auth-token
-  const userId = "1";
 
   useEffect(() => {
     async function fetchData() {
-      const fetchedReservations = await fetchReservations(userId);
+      const fetchedReservations = await fetchReservations();
       setReservations(fetchedReservations);
-      const fetchedOffers = await fetchOffers(userId);
+      const fetchedOffers = await fetchOffers();
       setOffers(fetchedOffers);
     }
     fetchData();
@@ -69,15 +72,18 @@ export function UserSection() {
   return (
     <PageLayout showFooter>
       <List>
-        <h2>Reservierungen</h2>
+        <Title>Reservierungen</Title>
         {reservations.map((reservation) => (
-          <ListItem key={reservation.id} href={`/offers/${reservation.id}`}>
-            <CategoryImage src={fruitsSrc} alt="offer title" />
+          <ListItem key={reservation._id} href={`/offers/${reservation._id}`}>
+            <CategoryImage
+              src={`/categories/${reservation.category}.svg`}
+              alt="offer title"
+            />
             <Description>
               <h3>{reservation.title}</h3>
               <p>
                 <img src={LocationSrc} alt="locationpicker icon" />
-                {reservation.city}
+                {reservation.location.zip} {reservation.location.city}
               </p>
               <p>
                 <span>
@@ -86,7 +92,7 @@ export function UserSection() {
                 </span>
                 <span>
                   <img src={TimeSrc} alt="clock icon" />
-                  {reservation.time}&nbsp;Uhr
+                  {reservation.start_time} - {reservation.end_time} Uhr
                 </span>
               </p>
             </Description>
@@ -95,15 +101,18 @@ export function UserSection() {
         ))}
       </List>
       <List>
-        <h2>Angebote</h2>
+        <Title>Angebote</Title>
         {offers.map((offer) => (
-          <ListItem key={offer.id} href={`/offers/${offer.id}`}>
-            <CategoryImage src={fruitsSrc} alt="offer title" />
+          <ListItem key={offer._id}>
+            <CategoryImage
+              src={`/categories/${offer.category}.svg`}
+              alt="offer title"
+            />
             <Description>
               <h3>{offer.title}</h3>
               <p>
                 <img src={LocationSrc} alt="locationpicker icon" />
-                {offer.city}
+                {offer.location.zip} {offer.location.city}
               </p>
               <p>
                 <span>
@@ -112,11 +121,11 @@ export function UserSection() {
                 </span>
                 <span>
                   <img src={TimeSrc} alt="clock icon" />
-                  {offer.time}&nbsp;Uhr
+                  {offer.start_time} - {offer.end_time} Uhr
                 </span>
               </p>
             </Description>
-            <ArrowIcon src={ArrowSrc} alt="offer title" />
+            {/* <ArrowIcon src={ArrowSrc} alt="offer title" /> */}
           </ListItem>
         ))}
       </List>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "@emotion/styled";
+import { useHistory } from "react-router-dom";
+import { createOffer } from "../api/results";
 import { DatePicker, RangePicker } from "../components/DateTimePickers";
 import { Button } from "../components/Button";
 import { PageLayout } from "../components/PageLayout";
@@ -11,13 +13,23 @@ const Form = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   h2 {
-    margin: 0.5em 0 0 0;
+    margin-top: 0.5em;
+    margin-bottom: 0em;
+  }
+  input {
+    :invalid,
+    :required {
+      border: 1px solid #de3a3a;
+    }
   }
 `;
 
 const Dropdown = styled.div`
   cursor: pointer;
-  outline: none;
+  select,
+  option {
+    outline: none;
+  }
 `;
 
 const Location = styled.div`
@@ -29,80 +41,97 @@ const Location = styled.div`
   }
 `;
 
+const Footer = styled.div`
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  background: #fff;
+  & button {
+    margin: 0.5em;
+  }
+`;
+const FooterGradient = styled.div`
+  height: 0.4em;
+  background: var(--bg-main-gradient);
+`;
+const CancelButton = styled(Button)`
+  color: #ffffff;
+  background: #de3a3a;
+`;
 export function Create() {
-  const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-    console.log(date);
-    console.log(time);
-    console.log(errors);
+  const [category, setCategory] = useState("misc");
+  const [date, setDate] = useState(null);
+  const [time, setTime] = useState();
+  const { register, handleSubmit } = useForm();
+  const history = useHistory();
+
+  const onSubmit = async (data) => {
+    const formattedDate = date.format("DD.MM.YYYY");
+    const start_time = time[0].format("HH:mm");
+    const end_time = time[1].format("HH:mm");
+    const tags = ["vegetarisch", "vegan"];
+    const response = await createOffer(
+      data,
+      formattedDate,
+      start_time,
+      end_time,
+      tags
+    );
+    if (response) {
+      history.push("/created");
+    }
   };
 
-  const CancelButton = styled(Button)`
-    color: #ffffff;
-    background: #de3a3a;
-  `;
-
-  const FooterGradient = styled.div`
-    height: 0.4em;
-    background: var(--bg-main-gradient);
-  `;
-
-  const Footer = styled.div`
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100vw;
-    background: #fff;
-    & button {
-      margin: 0.5em;
-    }
-  `;
-
   const [categories] = useState([
-    { label: "Brot & Backwaren", value: "bread" },
-    { label: "Fast Food", value: "fastfood" },
-    { label: "Fisch & Fischprodukte", value: "fish" },
-    { label: "Fleisch & Fleischprodukte", value: "meat" },
-    { label: "Gemüse", value: "vegetables" },
-    { label: "Gerichte & Speisen", value: "dishes" },
-    { label: "Getränke", value: "drinks" },
-    { label: "Hülsenfrüchte", value: "beans" },
-    { label: "Käse", value: "cheese" },
-    { label: "Milch & Milcherzeugnisse", value: "milk" },
-    { label: "Nudeln & Teigwaren", value: "noodles" },
-    { label: "Nüsse & Samen", value: "nuts" },
-    { label: "Obst & Obstprodukte", value: "fruits" },
-    { label: "Öle & Fette", value: "oil" },
-    { label: "Kartoffelprodukte", value: "potatoes" },
-    { label: "Süßwaren", value: "sweets" },
-    { label: "Verschiedenes", value: "misc" },
+    { label: "Brot & Backwaren", category: "bread" },
+    { label: "Fast Food", category: "fastfood" },
+    { label: "Fisch & Fischprodukte", category: "fish" },
+    { label: "Fleisch & Fleischprodukte", category: "meat" },
+    { label: "Gemüse", category: "vegetables" },
+    { label: "Gerichte & Speisen", category: "dishes" },
+    { label: "Getränke", category: "drinks" },
+    { label: "Hülsenfrüchte", category: "beans" },
+    { label: "Käse", category: "cheese" },
+    { label: "Milch & Milcherzeugnisse", category: "milk" },
+    { label: "Nudeln & Teigwaren", category: "noodles" },
+    { label: "Nüsse & Samen", category: "nuts" },
+    { label: "Obst & Obstprodukte", category: "fruits" },
+    { label: "Öle & Fette", category: "oil" },
+    { label: "Kartoffelprodukte", category: "potatoes" },
+    { label: "Süßwaren", category: "sweets" },
+    { label: "Verschiedenes", category: "misc" },
   ]);
 
   const preferences = ["glutenfrei", "laktosefrei", "vegan", "vegetarisch"];
-
-  const [value, setValue] = useState("misc");
-  const [date, setDate] = useState(null);
-  const [time, setTime] = useState(new Date());
 
   return (
     <PageLayout>
       <Form>
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2>Titel</h2>
-          <input type="text" placeholder="Titel" name="titel" ref={register} />
+          <input
+            type="text"
+            placeholder="z.B. 500g Steinpilze"
+            name="title"
+            ref={register({
+              required: true,
+            })}
+          />
           <h2>Kategorie</h2>
           <Dropdown>
             <select
-              value={value}
-              name="categories"
-              ref={register}
+              value={category}
+              name="category"
+              ref={register({
+                required: true,
+              })}
               onChange={(e) => {
-                setValue(e.currentTarget.value);
+                setCategory(e.currentTarget.value);
               }}
             >
-              {categories.map(({ label, value }) => (
-                <option key={value} value={value}>
+              {categories.map(({ label, category }) => (
+                <option key={category} value={category}>
                   {label}
                 </option>
               ))}
@@ -116,19 +145,25 @@ export function Create() {
           ))}
           <h2>Abholzeit</h2>
           <DatePicker
+            name="date"
             selected={date}
             onChange={(date) => {
               setDate(date);
             }}
             dateFormat="dd.MM.yyyy"
             isClearable="true"
-            ref={register}
+            ref={register({
+              required: true,
+            })}
           />
           <RangePicker
+            name="time"
             format="H:mm"
             minuteStep={15}
             selected={time}
-            ref={register}
+            ref={register({
+              required: true,
+            })}
             onChange={(date) => {
               setTime(date);
             }}
@@ -137,28 +172,41 @@ export function Create() {
           <Location>
             <input
               type="text"
-              placeholder="Straße und Hausnr."
-              name="Straße"
-              ref={register}
+              placeholder="Klingelname / Treffpunkt"
+              name="name"
+              ref={register({
+                required: true,
+              })}
             />
-            <input type="text" placeholder="PLZ" name="PLZ" ref={register} />
+            <input
+              type="text"
+              placeholder="Straße und Hausnr."
+              name="street"
+              ref={register({
+                required: true,
+              })}
+            />
+            <input
+              type="text"
+              placeholder="PLZ"
+              name="zip"
+              ref={register({
+                required: true,
+              })}
+            />
             <input
               type="text"
               placeholder="Stadt"
-              name="Stadt"
-              ref={register}
-            />
-            <input
-              type="text"
-              placeholder="Klingelname / Treffpunkt"
-              name="Klingelname / Treffpunkt"
-              ref={register}
+              name="city"
+              ref={register({
+                required: true,
+              })}
             />
           </Location>
           <Footer>
             <FooterGradient />
             <Button type="submit">Anbieten</Button>
-            <CancelButton type="reset">Abbrechen</CancelButton>
+            <CancelButton onClick={history.goBack}>Abbrechen</CancelButton>
           </Footer>
         </form>
       </Form>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useLocation, useHistory } from "react-router-dom";
 import styled from "@emotion/styled";
-import { fetchOffer } from "../api/results";
+import { fetchOffer, reserveOffer } from "../api/results";
 import { Button } from "../components/Button";
 import { PageLayout } from "../components/PageLayout";
 import LocationSrc from "../assets/icons/location.svg";
@@ -16,13 +17,14 @@ const ListItem = styled.a`
 `;
 
 const CategoryImage = styled.img`
-  max-height: 8em;
-  margin-bottom: 2em;
+  max-width: 5em;
+  margin-top: 1em;
+  margin-bottom: 1em;
 `;
 
 const Title = styled.div`
   text-align: center;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 `;
 
 const Tag = styled.div`
@@ -61,31 +63,40 @@ const Location = styled.div`
 export function Result() {
   const [offers, setOffers] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  //const [query, setQuery] = useState("");
+  const location = useLocation();
+  const pathParts = location.pathname.split("/");
+  const offerId = pathParts[2];
+  const history = useHistory();
 
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
-      const offers = await fetchOffer();
+      const offers = await fetchOffer(offerId);
       setOffers(offers);
       setIsLoading(false);
     }
     fetchData();
-  }, []);
+  }, [offerId]);
+
+  async function reserveSuccess(offerId) {
+    const reservedOffer = await reserveOffer(offerId);
+    if (reservedOffer) {
+      history.push("/reserved");
+    }
+  }
 
   if (isLoading || offers === null) {
     return <div>loading...</div>;
   }
   return (
     <PageLayout showFooter>
-      <ListItem key={offers.id}>
+      <ListItem key={offers._id}>
         <CategoryImage
           src={`/categories/${offers.category}.svg`}
           alt="offer title"
         />
         <Title>
           <h1>{offers.title}</h1>
-          <h2>{offers.category}</h2>
         </Title>
         {offers.tags.map((tag) => (
           <Tag key={tag}>{tag}</Tag>
@@ -98,7 +109,7 @@ export function Result() {
             </p>
             <p>{offers.location.street}</p>
             <p>
-              {offers.location.zip}&nbsp;{offers.location.city}
+              {offers.location.zip} {offers.location.city}
             </p>
           </Location>
           <p>
@@ -107,11 +118,15 @@ export function Result() {
           </p>
           <p>
             <img src={TimeSrc} alt="clock icon" />
-            {offers.time}&nbsp;Uhr
+            {offers.start_time} - {offers.end_time} Uhr
           </p>
         </Description>
       </ListItem>
-      <Button>Reservieren</Button>
+      {offers.reserved_by ? (
+        <div></div>
+      ) : (
+        <Button onClick={() => reserveSuccess(offerId)}>Reservieren</Button>
+      )}
     </PageLayout>
   );
 }

@@ -3,6 +3,7 @@ import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
 import { ColorPageLayout } from "../components/PageLayout";
 import { WhiteButton } from "../components/Button";
+import { Link } from "react-router-dom";
 
 const Logo = styled.img`
   max-width: 30%;
@@ -34,11 +35,13 @@ export function CreatedPrompt() {
       </Title>
       <Description>
         <h3>
-          Lieber /Nutzer/, vielen Dank, dass du das Essen vor dem Müll rettest
-          und jemand anderem dabei noch eine Freude bereitest.
+          Vielen Dank, dass du das Essen vor dem Müll rettest und jemand anderem
+          dabei noch eine Freude bereitest.
         </h3>
       </Description>
-      <WhiteButton>Meine Angebote</WhiteButton>
+      <Link to="/usersection">
+        <WhiteButton>Meine Angebote</WhiteButton>
+      </Link>
     </ColorPageLayout>
   );
 }

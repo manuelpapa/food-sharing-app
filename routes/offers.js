@@ -1,75 +1,82 @@
-const express = require("express");
-const jwt = require("jsonwebtoken");
-const bodyParser = require("body-parser");
-require("dotenv").config();
+const Offer = require("../model/Offer");
+const router = require("express").Router();
+const verify = require("./verifyToken");
 
-const { getOffers, getOffer, createOffer } = require("../lib/offers");
+// Get all offers
+router.get("/", verify, async (req, res) => {
+  try {
+    const offers = await Offer.find();
+    if (!offers) return res.status(400).send("No offers available");
+    res.send(offers);
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
 
-const router = express.Router();
-router.use(bodyParser.json());
+// Get available, unreserved offers
+router.get("/available", verify, async (req, res) => {
+  try {
+    const offers = await Offer.find({ reserved_by: null });
+    if (!offers) return res.status(400).send("No offers available");
+    res.send(offers);
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
 
-function createOffersRouter(database) {
-  router.get("/test", (request, response) => {
-    response.send("We're on offer route!");
-  });
+// Get offer by offerId
+router.get("/:offerId", verify, async (req, res) => {
+  try {
+    const offer = await Offer.find({ _id: req.params.offerId });
+    if (!offer) return res.status(400).send("Offer does not exist");
 
-  // GET OFFERS
-  router.get("/", async (request, response) => {
+    res.send(offer);
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
+
+// Create offer and save to db
+router.post("/", verify, async (req, res) => {
+  console.log(req);
+  try {
+    const offer = new Offer({
+      title: req.body.title,
+      category: req.body.category,
+      category_name: req.body.category_name,
+      date: req.body.date,
+      start_time: req.body.start_time,
+      end_time: req.body.end_time,
+      location: req.body.location,
+      tags: req.body.tags,
+      reserved_by: null,
+      created_by: req.user,
+    });
+
     try {
-      const { authToken } = request.cookies;
-      const { username } = jwt.verify(authToken, process.env.JWT_SECRET);
-      console.log(`Allow access to ${username}`);
-
-      const offers = await getOffers(database);
-      if (!offers) {
-        response.status(404).send("No offers available.");
-        return;
-      }
-
-      response.status(200).send(offers);
+      await offer.save();
+      res.send({ offer: offer._id });
     } catch (error) {
-      console.error(error);
-      console.error("Something went wrong", error);
-      response.status(500).send(error.message);
+      res.status(400).send(error);
     }
-  });
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
 
-  // GET OFFER
-  router.get("/:id", async (request, response) => {
-    try {
-      const { id } = request.params;
-      const { authToken } = request.cookies;
-      const { username } = jwt.verify(authToken, process.env.JWT_SECRET);
-      console.log(`Allow access to ${username}`);
-
-      const offer = await getOffer(database, id);
-      if (!offer) {
-        response.status(404).send("No offer available.");
-        return;
-      }
-
-      response.status(200).send(offer);
-    } catch (error) {
-      console.error(error);
-      console.error("Something went wrong", error);
-      response.status(500).send(error.message);
-    }
-  });
-
-  // CREATE OFFER
-  router.post("/", async (request, response) => {
-    try {
-      console.log("POST in /api/offers");
-      const { offer } = request.body;
-      await createOffer(database, offer);
-      response.status(201).send("Offer created.");
-    } catch (error) {
-      console.error("Something went wrong", error);
-      response.status(500).send(error.message);
-    }
-  });
-
-  return router;
-}
-
-module.exports = createOffersRouter;
+// Update reserved_by prop of offer by offerId with userId
+router.patch("/:offerId", verify, async (req, res) => {
+  try {
+    const updatedOffer = await Offer.findOneAndUpdate(
+      { _id: req.params.offerId },
+      {
+        reserved_by: req.user._id,
+      },
+      { new: true }
+    );
+    res.status(200).send(updatedOffer);
+  } catch (error) {
+    res.status(500).send("Internal server error");
+  }
+});
+module.exports = router;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import List from "../components/List";
-import { fetchResults } from "../api/results";
+import { fetchAvailableOffers } from "../api/results";
 import ArrowSrc from "../assets/icons/arrowRight.svg";
 import LocationSrc from "../assets/icons/location.svg";
 import DateSrc from "../assets/icons/date.svg";
@@ -21,26 +21,28 @@ const ListItem = styled.a`
 
 const CategoryImage = styled.img`
   grid-column: 1 / 2;
-  max-height: 2em;
+  max-width: 2em;
+  margin-left: 0.6em;
 `;
 
 const Description = styled.div`
   grid-column: 2 / 3;
-  padding-left: 1em;
+  padding-left: 0.5em;
 
   img {
-    height: 1.2em;
+    height: 1.3em;
     padding-right: 0.3em;
   }
-  h3,
-  p {
-    padding-bottom: 0.5em;
+  h3 {
+    padding-bottom: 0;
+    font-weight: 600;
   }
   p {
+    padding-bottom: 0.5em;
     font-size: 0.8em;
   }
   span {
-    padding-right: 1em;
+    padding-right: 0.5em;
   }
 `;
 
@@ -51,45 +53,52 @@ const ArrowIcon = styled.img`
 
 export function Results() {
   const [results, setResults] = useState([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
-    async function fetchData() {
-      const offers = await fetchResults();
+    async function fetchData(query) {
+      const offers = await fetchAvailableOffers();
       setResults(offers);
     }
     fetchData();
   }, []);
 
+  const searchedOffers = results.filter((result) => {
+    return result.title.toLowerCase().includes(query.toLowerCase());
+  });
+
   return (
-    <SearchPageLayout showFooter>
-      <List>
-        {results.map((result) => (
-          <ListItem key={result.id} href={`/offers/${result.id}`}>
-            <CategoryImage
-              src={`/categories/${result.category}.svg`}
-              alt="offer title"
-            />
-            <Description>
-              <h3>{result.title}</h3>
-              <p>
-                <img src={LocationSrc} alt="locationpicker icon" />
-                {result.city}
-              </p>
-              <p>
-                <span>
-                  <img src={DateSrc} alt="calendar icon" />
-                  {result.date}
-                </span>
-                <span>
-                  <img src={TimeSrc} alt="clock icon" />
-                  {result.time}&nbsp;Uhr
-                </span>
-              </p>
-            </Description>
-            <ArrowIcon src={ArrowSrc} alt="offer title" />
-          </ListItem>
-        ))}
-      </List>
+    <SearchPageLayout showFooter value={query} onChange={setQuery}>
+      <>
+        <List>
+          {searchedOffers.map((result) => (
+            <ListItem key={result._id} href={`/offers/${result._id}`}>
+              <CategoryImage
+                src={`/categories/${result.category}.svg`}
+                alt="offer title"
+              />
+              <Description>
+                <h3>{result.title}</h3>
+                <p>
+                  <img src={LocationSrc} alt="locationpicker icon" />
+                  {result.location.zip} {result.location.city}
+                </p>
+                <p>
+                  <span>
+                    <img src={DateSrc} alt="calendar icon" />
+                    {result.date}
+                  </span>
+                  <span>
+                    <img src={TimeSrc} alt="clock icon" />
+                    {result.start_time} - {result.end_time} Uhr
+                  </span>
+                </p>
+              </Description>
+              <ArrowIcon src={ArrowSrc} alt="offer title" />
+            </ListItem>
+          ))}
+        </List>
+      </>
     </SearchPageLayout>
   );
 }

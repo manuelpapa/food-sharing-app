@@ -5,7 +5,7 @@ function List({ children }) {
   return <nav>{children}</nav>;
 }
 List.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default List;

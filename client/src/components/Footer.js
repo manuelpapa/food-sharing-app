@@ -40,10 +40,10 @@ export default function Footer() {
     <FooterContainer>
       <FooterGradient />
       <FooterIcons>
-        <Link to="/offers">
+        <Link to="/createoffer">
           <img src={AddIcon} alt="Essen teilen" />
         </Link>
-        <Link to="/createoffer">
+        <Link to="/offers">
           <img src={ListIcon} alt="Liste durchsuchen" />
         </Link>
         <Link to="/usersection">
