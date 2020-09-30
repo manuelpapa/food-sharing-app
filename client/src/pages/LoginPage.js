@@ -14,6 +14,7 @@ const Container = styled.div`
   h3,
   h4,
   p,
+  small,
   input,
   select {
     text-align: center;
@@ -37,6 +38,9 @@ const Container = styled.div`
     :required {
       border: 1px solid #de3a3a;
     }
+  }
+  small {
+    color: #de3a3a;
   }
 `;
 
@@ -79,7 +83,10 @@ export function LoginPage() {
         setError("response", { type: "manual", message: response.statusText });
       }
     } catch (error) {
-      setError("response", { type: "manual", message: "An error occured" });
+      setError("response", {
+        type: "manual",
+        message: "Ein Fehler ist aufgetreten",
+      });
     }
   };
 
@@ -110,17 +117,17 @@ export function LoginPage() {
                 required: true,
               })}
             />
-            {errors.email && <span>This field is required</span>}
+            {errors.email && <small>Bitte ausfüllen</small>}
             <input
-              placeholder="Password"
+              placeholder="Passwort"
               name="password"
               type="password"
               ref={register({
                 required: true,
               })}
             />
-            {errors.password && <span>This field is required</span>}
-            {errors.response && <p>{errors.response.message}</p>}
+            {errors.password && <small>Bitte ausfüllen</small>}
+            {errors.response && <small>{errors.response.message}</small>}
             <Button type="submit">Login</Button>
           </form>
         </Main>
