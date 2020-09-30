@@ -30,6 +30,7 @@ const Container = styled.div`
   }
   input {
     text-align: center;
+    margin-bottom: 1em;
     padding-bottom: 0.1em;
     :focus {
       outline: none;
@@ -42,18 +43,21 @@ const Container = styled.div`
   small {
     color: #de3a3a;
   }
+  p {
+    font-size: 0.9em;
+  }
 `;
 
 const Header = styled.header`
   flex-direction: column;
-  padding: 1em 0em;
+  padding: 1em 0em 0em;
   h1 {
     margin: 0;
   }
   img {
     flex-direction: column;
     padding: 0.5em 0;
-    max-width: 30vw;
+    max-width: 20vw;
     display: block;
     margin: auto;
   }
