@@ -13,6 +13,7 @@ const GlobalStyles = () => {
         *:after {
           box-sizing: border-box;
           margin: 0;
+          max-width: 375px;
         }
 
         #root {
