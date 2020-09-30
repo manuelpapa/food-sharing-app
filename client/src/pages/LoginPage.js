@@ -14,6 +14,7 @@ const Container = styled.div`
   h3,
   h4,
   p,
+  small,
   input,
   select {
     text-align: center;
@@ -37,6 +38,9 @@ const Container = styled.div`
     :required {
       border: 1px solid #de3a3a;
     }
+  }
+  small {
+    color: #de3a3a;
   }
 `;
 
@@ -67,15 +71,23 @@ const Main = styled.div`
 `;
 
 export function LoginPage() {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, setError, errors } = useForm();
   const history = useHistory();
 
-  const onSubmit = (data) => {
-    const response = fetchToken(data);
-    if (response) {
-      history.push("/offers");
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetchToken(data);
+      if (response.status === 200) {
+        history.push("/offers");
+      } else if (response.status === 400) {
+        setError("response", { type: "manual", message: response.statusText });
+      }
+    } catch (error) {
+      setError("response", {
+        type: "manual",
+        message: "Ein Fehler ist aufgetreten",
+      });
     }
-    console.log(errors);
   };
 
   return (
@@ -105,14 +117,17 @@ export function LoginPage() {
                 required: true,
               })}
             />
+            {errors.email && <small>Bitte ausfüllen</small>}
             <input
-              placeholder="Password"
+              placeholder="Passwort"
               name="password"
               type="password"
               ref={register({
                 required: true,
               })}
             />
+            {errors.password && <small>Bitte ausfüllen</small>}
+            {errors.response && <small>{errors.response.message}</small>}
             <Button type="submit">Login</Button>
           </form>
         </Main>

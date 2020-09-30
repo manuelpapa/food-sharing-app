@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -27,8 +28,9 @@ async function main() {
   app.use("/api/user", authRoute);
   app.use("/api/offers", offerRoute);
 
-  app.get("/", (request, response) => {
-    response.sendFile(__dirname + "/index.html");
+  app.use(express.static(path.join(__dirname, "client/build")));
+  app.get("*", (request, response) => {
+    response.sendFile(path.join(__dirname, "client/build/index.html"));
   });
 
   app.listen(port, () => {

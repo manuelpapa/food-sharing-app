@@ -16,7 +16,8 @@
     "server": "nodemon server.js",
     "client": "cd client && npm run start",
     "storybook": "cd client && npm run storybook",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\" \"npm run storybook\""
+    "dev&storybook": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\" \"npm run storybook\"",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",

@@ -16,7 +16,10 @@ router.get("/", verify, async (req, res) => {
 // Get available, unreserved offers
 router.get("/available", verify, async (req, res) => {
   try {
-    const offers = await Offer.find({ reserved_by: null });
+    const offers = await Offer.find({
+      reserved_by: null,
+      created_by: { $ne: req.user },
+    });
     if (!offers) return res.status(400).send("No offers available");
     res.send(offers);
   } catch (error) {

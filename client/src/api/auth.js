@@ -1,16 +1,16 @@
 export async function fetchToken(data) {
-  try {
-    const response = await fetch("/api/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    const result = await response.text();
-    return result;
-  } catch (error) {
-    alert(error.message);
-    return null;
-  }
+  const response = await fetch("/api/user/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  const responseText = await response.text();
+  const responseObject = await response;
+  const result = {
+    status: responseObject.status,
+    statusText: responseText,
+  };
+  return result;
 }
