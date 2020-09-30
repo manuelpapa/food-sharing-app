@@ -67,15 +67,20 @@ const Main = styled.div`
 `;
 
 export function LoginPage() {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, setError, errors } = useForm();
   const history = useHistory();
 
-  const onSubmit = (data) => {
-    const response = fetchToken(data);
-    if (response) {
-      history.push("/offers");
+  const onSubmit = async (data) => {
+    try {
+      const response = await fetchToken(data);
+      if (response.status === 200) {
+        history.push("/offers");
+      } else if (response.status === 400) {
+        setError("response", { type: "manual", message: response.statusText });
+      }
+    } catch (error) {
+      setError("response", { type: "manual", message: "An error occured" });
     }
-    console.log(errors);
   };
 
   return (
@@ -105,6 +110,7 @@ export function LoginPage() {
                 required: true,
               })}
             />
+            {errors.email && <span>This field is required</span>}
             <input
               placeholder="Password"
               name="password"
@@ -113,6 +119,8 @@ export function LoginPage() {
                 required: true,
               })}
             />
+            {errors.password && <span>This field is required</span>}
+            {errors.response && <p>{errors.response.message}</p>}
             <Button type="submit">Login</Button>
           </form>
         </Main>
