@@ -63,23 +63,32 @@ export function Create() {
   const [category, setCategory] = useState("misc");
   const [date, setDate] = useState(null);
   const [time, setTime] = useState();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, setError, errors } = useForm();
   const history = useHistory();
 
   const onSubmit = async (data) => {
-    const formattedDate = date.format("DD.MM.YYYY");
-    const start_time = time[0].format("HH:mm");
-    const end_time = time[1].format("HH:mm");
-    const tags = ["vegetarisch", "vegan"];
-    const response = await createOffer(
-      data,
-      formattedDate,
-      start_time,
-      end_time,
-      tags
-    );
-    if (response) {
-      history.push("/created");
+    try {
+      const formattedDate = date.format("DD.MM.YYYY");
+      const start_time = time[0].format("HH:mm");
+      const end_time = time[1].format("HH:mm");
+      const tags = ["vegetarisch", "vegan"];
+      const response = await createOffer(
+        data,
+        formattedDate,
+        start_time,
+        end_time,
+        tags
+      );
+      if (response.status === 200) {
+        history.push("/created");
+      } else if (response.status === 400) {
+        setError("response", { type: "manual", message: response.statusText });
+      }
+    } catch (error) {
+      setError("response", {
+        type: "manual",
+        message: "Ein Fehler ist aufgetreten",
+      });
     }
   };
 
@@ -118,6 +127,7 @@ export function Create() {
               required: true,
             })}
           />
+          {errors.title && <small>Bitte ausfüllen</small>}
           <h2>Kategorie</h2>
           <Dropdown>
             <select
@@ -131,16 +141,22 @@ export function Create() {
               }}
             >
               {categories.map(({ label, category }) => (
-                <option key={category} value={category}>
+                <option key={category} value={category} name="category">
                   {label}
                 </option>
               ))}
             </select>
+            {errors.category && <small>Bitte ausfüllen</small>}
           </Dropdown>
           <h2>Tags</h2>
           {preferences?.map((preference) => (
-            <TagComponent key={preference} preference={preference}>
+            <TagComponent
+              key={preference}
+              preference={preference}
+              name="preference"
+            >
               <input ref={register} />
+              {errors.preference && <small>Bitte ausfüllen</small>}
             </TagComponent>
           ))}
           <h2>Abholzeit</h2>
@@ -156,6 +172,8 @@ export function Create() {
               required: true,
             })}
           />
+          {errors.date && <small>Bitte ausfüllen</small>}
+
           <RangePicker
             name="time"
             format="H:mm"
@@ -168,6 +186,8 @@ export function Create() {
               setTime(date);
             }}
           />
+          {errors.time && <small>Bitte ausfüllen</small>}
+
           <h2>Abholort</h2>
           <Location>
             <input
@@ -178,6 +198,8 @@ export function Create() {
                 required: true,
               })}
             />
+            {errors.name && <small>Bitte ausfüllen</small>}
+
             <input
               type="text"
               placeholder="Straße und Hausnr."
@@ -186,6 +208,8 @@ export function Create() {
                 required: true,
               })}
             />
+            {errors.street && <small>Bitte ausfüllen</small>}
+
             <input
               type="text"
               placeholder="PLZ"
@@ -194,6 +218,8 @@ export function Create() {
                 required: true,
               })}
             />
+            {errors.zip && <small>Bitte ausfüllen</small>}
+
             <input
               type="text"
               placeholder="Stadt"
@@ -202,6 +228,7 @@ export function Create() {
                 required: true,
               })}
             />
+            {errors.city && <small>Bitte ausfüllen</small>}
           </Location>
           <Footer>
             <FooterGradient />
