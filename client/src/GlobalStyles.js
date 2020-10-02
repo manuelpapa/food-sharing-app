@@ -71,7 +71,9 @@ const GlobalStyles = () => {
           font-size: 1em;
           color: #000000;
         }
-
+        a {
+          color: var(--accent);
+        }
         body {
           font-family: "SFUIreg";
           font-size: 1em;

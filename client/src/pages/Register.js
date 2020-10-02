@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
-import { fetchToken } from "../api/auth";
+import { registerUser } from "../api/auth";
 import { useHistory } from "react-router-dom";
 import { Button } from "../components/Button";
 
@@ -46,8 +46,6 @@ const Container = styled.div`
   p {
     font-size: 0.9em;
   }
-  a {
-  }
 `;
 
 const Header = styled.header`
@@ -76,15 +74,15 @@ const Main = styled.div`
   }
 `;
 
-export function LoginPage() {
+export function Register() {
   const { register, handleSubmit, setError, errors } = useForm();
   const history = useHistory();
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetchToken(data);
+      const response = await registerUser(data);
       if (response.status === 200) {
-        history.push("/offers");
+        history.push("/user/login");
       } else if (response.status === 400) {
         setError("response", { type: "manual", message: response.statusText });
       }
@@ -106,15 +104,24 @@ export function LoginPage() {
           <img src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
         </Header>
         <Main>
-          <h4>Im Namen der Mundgerechtigkeit.</h4>
+          <h4>Teller statt Tonne.</h4>
           <p>
             Mehr als 10 Millionen Tonnen Lebensmittel landen alleine in
             Deutschland jedes Jahr im Müll!
           </p>
           <p>
-            Hilf mit Müll zu vermeiden und teile, was noch köstlich und gut ist.
+            Tritt uns bei und hilf uns dabei, Essbares vor Ablauf zu verteilen.
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              placeholder="Name"
+              name="name"
+              type="name"
+              ref={register({
+                required: true,
+              })}
+            />
+            {errors.name && <small>Bitte ausfüllen</small>}
             <input
               placeholder="Email"
               name="email"
@@ -134,11 +141,9 @@ export function LoginPage() {
             />
             {errors.password && <small>Bitte ausfüllen</small>}
             {errors.response && <small>{errors.response.message}</small>}
-            <Button type="submit">Login</Button>
+            <Button type="submit">Registrieren</Button>
             <small>
-              <a href="/user/register/">
-                Noch kein Mitglied? Jetzt Registrieren
-              </a>
+              <a href="/user/login/">Du bist schon dabei? Hier einloggen</a>
             </small>
           </form>
         </Main>
