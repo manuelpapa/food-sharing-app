@@ -104,8 +104,7 @@ export async function createOffer(
       },
       body: JSON.stringify(request),
     });
-    const result = await response.text();
-    return result;
+    return response;
   } catch (error) {
     return null;
   }

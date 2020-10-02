@@ -41,12 +41,10 @@ router.get("/:offerId", verify, async (req, res) => {
 
 // Create offer and save to db
 router.post("/", verify, async (req, res) => {
-  console.log(req);
   try {
     const offer = new Offer({
       title: req.body.title,
       category: req.body.category,
-      category_name: req.body.category_name,
       date: req.body.date,
       start_time: req.body.start_time,
       end_time: req.body.end_time,
@@ -58,7 +56,7 @@ router.post("/", verify, async (req, res) => {
 
     try {
       await offer.save();
-      res.send({ offer: offer._id });
+      res.status(200).send({ offer: offer._id });
     } catch (error) {
       res.status(400).send(error);
     }
