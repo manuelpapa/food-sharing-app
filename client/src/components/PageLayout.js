@@ -73,6 +73,7 @@ const ColorContainer = styled(Container)`
   text-align: center;
   justify-content: center;
   background-image: var(--bg-main-gradient);
+  height: 100vh;
 `;
 
 export const ColorPageLayout = ({ children, showFooter }) => {
