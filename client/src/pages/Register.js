@@ -104,13 +104,13 @@ export function Register() {
           <img src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
         </Header>
         <Main>
-          <h4>Im Namen der Mundgerechtigkeit.</h4>
+          <h4>Teller statt Tonne.</h4>
           <p>
             Mehr als 10 Millionen Tonnen Lebensmittel landen alleine in
             Deutschland jedes Jahr im Müll!
           </p>
           <p>
-            Hilf mit Müll zu vermeiden und teile, was noch köstlich und gut ist.
+            Tritt uns bei und hilf uns dabei, Essbares vor Ablauf zu verteilen.
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input

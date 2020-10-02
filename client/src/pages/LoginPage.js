@@ -46,6 +46,8 @@ const Container = styled.div`
   p {
     font-size: 0.9em;
   }
+  a {
+  }
 `;
 
 const Header = styled.header`
@@ -133,6 +135,11 @@ export function LoginPage() {
             {errors.password && <small>Bitte ausfüllen</small>}
             {errors.response && <small>{errors.response.message}</small>}
             <Button type="submit">Login</Button>
+            <small>
+              <a href="/user/register/">
+                Noch kein Mitglied? Jetzt Registrieren
+              </a>
+            </small>
           </form>
         </Main>
       </Container>
