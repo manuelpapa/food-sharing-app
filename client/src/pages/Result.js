@@ -64,7 +64,7 @@ export function Result() {
   const [offers, setOffers] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
-  const pathParts = location.pathname.split("/");
+  const pathParts = location?.pathname.split("/");
   const offerId = pathParts[2];
   const history = useHistory();
 
