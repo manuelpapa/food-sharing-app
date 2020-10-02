@@ -14,6 +14,7 @@ import { UserSection } from "./pages/UserSection";
 import { LoginPage } from "./pages/LoginPage";
 import { ReservedPrompt } from "./pages/ReservedPrompt";
 import { CreatedPrompt } from "./pages/CreatedPrompt";
+import { Register } from "./pages/Register";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
         <Switch>
           <Route path="/user/login">
             <LoginPage />
+          </Route>
+          <Route path="/user/register">
+            <Register />
           </Route>
           <Route path="/offers/:offer">
             <Result />
