@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import styled from "@emotion/styled";
 import { fetchOffer, reserveOffer } from "../api/results";
 import { Button } from "../components/Button";
@@ -63,9 +63,7 @@ const Location = styled.div`
 export function Result() {
   const [offers, setOffers] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const location = useLocation();
-  const pathParts = location.pathname.split("/");
-  const offerId = pathParts[2];
+  const { offer: offerId } = useParams();
   const history = useHistory();
 
   useEffect(() => {
