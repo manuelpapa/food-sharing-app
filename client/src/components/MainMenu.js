@@ -1,7 +1,7 @@
 import React from "react";
 import LogoSrc from "../assets/icons/logo.svg";
 import styled from "@emotion/styled";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 import { ColorPageLayout } from "./PageLayout";
 
 const Logo = styled.img`
@@ -11,12 +11,11 @@ const Logo = styled.img`
 
 const Footer = styled.div`
   flex-direction: column;
-
   justify-content: center;
   bottom: 1em;
 `;
 
-const MenuLink = styled.a`
+const MenuLink = styled(Link)`
   display: flex;
   justify-content: center;
   align-content: center;
