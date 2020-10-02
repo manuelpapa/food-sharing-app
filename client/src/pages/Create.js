@@ -6,7 +6,6 @@ import { createOffer } from "../api/results";
 import { DatePicker, RangePicker } from "../components/DateTimePickers";
 import { Button } from "../components/Button";
 import { PageLayout } from "../components/PageLayout";
-import TagComponent from "../components/Tag";
 
 const Form = styled.div`
   display: flex;
@@ -59,6 +58,21 @@ const CancelButton = styled(Button)`
   color: #ffffff;
   background: #de3a3a;
 `;
+const Tag = styled.div`
+  font-family: "SFUIreg";
+  font-size: 1em;
+  color: ${({ value }) => (value ? "black" : "var(--font-semi-dark)")};
+  border: ${({ value }) =>
+    value ? "1px solid white" : "1px solid var(--font-semi-dark)"};
+  border-radius: 3em;
+  padding: 1em 2em;
+  margin: 0 0.5em 0.5em 0.5em;
+  display: inline-block;
+  line-height: 1;
+  background: ${({ value }) => (value ? "var(--bg-main-gradient)" : "white")};
+  cursor: pointer;
+`;
+
 export function Create() {
   const [category, setCategory] = useState("misc");
   const [date, setDate] = useState(null);
@@ -66,18 +80,47 @@ export function Create() {
   const { register, handleSubmit, setError, errors } = useForm();
   const history = useHistory();
 
+  const [tags, setTags] = useState([
+    {
+      name: "glutenfrei",
+      isChecked: false,
+    },
+    {
+      name: "laktosefrei",
+      isChecked: false,
+    },
+    {
+      name: "vegan",
+      isChecked: false,
+    },
+    {
+      name: "vegetarisch",
+      isChecked: false,
+    },
+  ]);
+
+  console.log(tags);
+
+  function filterTags() {
+    const checkedTags = [];
+    tags.forEach((tag) => {
+      if (tag.isChecked) checkedTags.push(tag.name);
+    });
+    return checkedTags;
+  }
+
   const onSubmit = async (data) => {
     try {
       const formattedDate = date.format("DD.MM.YYYY");
       const start_time = time[0].format("HH:mm");
       const end_time = time[1].format("HH:mm");
-      const tags = ["vegetarisch", "vegan"];
+      const checkedTags = filterTags();
       const response = await createOffer(
         data,
         formattedDate,
         start_time,
         end_time,
-        tags
+        checkedTags
       );
       if (response.status === 200) {
         history.push("/created");
@@ -112,7 +155,19 @@ export function Create() {
     { label: "Verschiedenes", category: "misc" },
   ]);
 
-  const preferences = ["glutenfrei", "laktosefrei", "vegan", "vegetarisch"];
+  function handleChange(tagName, tagIsChecked) {
+    const updatedTags = [];
+    tags.forEach((tag) => {
+      if (tag.name === tagName && tagIsChecked) {
+        updatedTags.push({ name: tag.name, isChecked: false });
+      } else if (tag.name === tagName && !tagIsChecked) {
+        updatedTags.push({ name: tag.name, isChecked: true });
+      } else {
+        updatedTags.push({ name: tag.name, isChecked: tag.isChecked });
+      }
+    });
+    setTags(updatedTags);
+  }
 
   return (
     <PageLayout>
@@ -149,15 +204,21 @@ export function Create() {
             {errors.category && <small>Bitte ausfüllen</small>}
           </Dropdown>
           <h2>Tags</h2>
-          {preferences?.map((preference) => (
-            <TagComponent
-              key={preference}
-              preference={preference}
-              name="preference"
-            >
-              <input ref={register} />
-              {errors.preference && <small>Bitte ausfüllen</small>}
-            </TagComponent>
+          {tags?.map((tag) => (
+            <Tag value={tag.isChecked} key={tag.name} name={tag.name}>
+              <label htmlFor={tag.name}>
+                <input
+                  onChange={() => handleChange(tag.name, tag.isChecked)}
+                  type="checkbox"
+                  hidden
+                  placeholder={tag.name}
+                  name={tag.name}
+                  id={tag.name}
+                  ref={register}
+                />
+                <span>{tag.name}</span>
+              </label>
+            </Tag>
           ))}
           <h2>Abholzeit</h2>
           <DatePicker
