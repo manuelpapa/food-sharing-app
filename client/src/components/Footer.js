@@ -40,7 +40,7 @@ export default function Footer() {
     <FooterContainer>
       <FooterGradient />
       <FooterIcons>
-        <Link to="/createoffer">
+        <Link to="#">
           <img src={AddIcon} alt="Essen teilen" />
         </Link>
         <Link to="/offers">

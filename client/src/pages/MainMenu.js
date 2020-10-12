@@ -46,7 +46,7 @@ export function MainMenu() {
         <Logo src={LogoSrc} alt="A logo of a lifebuoy inside of a cloche" />
         <Menu>
           <Link to="/offers">Angebote</Link>
-          <Link to="/createoffer">Essen anbieten</Link>
+          <Link to="#">Essen anbieten</Link>
           <Link to="/usersection">Mein Bereich</Link>
         </Menu>
         <Footer>
