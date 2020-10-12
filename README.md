@@ -10,7 +10,8 @@ This app is made to help solving two problems in one step: give away food you do
 
 ### Heroku deployment
 
-https://mp-food-sharing-app.herokuapp.com/
+https://second-bite.herokuapp.com/
+*(Because of an error after deploying on Heroku, the Create-screen remains white. There is a conflict between the react-hook-forms and the Antd-Timepickers that is not visible in the local development. This issue will be resolved soon.)*
 
 ### Design
 
